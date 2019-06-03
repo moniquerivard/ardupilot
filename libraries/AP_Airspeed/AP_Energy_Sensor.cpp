@@ -23,10 +23,46 @@
 #include <AP_Common/AP_Common.h>
 #include <AP_ADC/AP_ADC.h>
 #include <AP_ADC_AnalogSource/AP_ADC_AnalogSource.h>
-#include "AP_Airspeed.h"
+#include "AP_Energy_Sensor.h"
 
 extern const AP_HAL::HAL& hal;
 
+//could add configs for other boards but just start here for now
+
+#define ENERGY_DEFAULT_PIN 1 //usually airspeed is 0
+
+//table of user settable paramaters
+cost AP_Param::GroupInfo AP_Energy_Sensor::var_info[] PROGMEM = {
+
+    // @Param: ENABLE
+    // @DisplayName: Energy Sensor enable
+    // @Description: enable energy sensor 
+    // @Values: 0:Disable,1:Enable
+    AP_GROUPINFO("ENABLE", 0, AP_Energy_Sensor, _enable, 1),
+
+    // @Param: PIN
+    // @DisplayName: Energy pin
+    // @Description: The analog pin number that the energy sensor is connected to. Set this to 0..9 for the APM2 analog pins. Set to 64 on an APM1 for the dedicated airspeed port on the end of the board. Set to 11 on PX4 for the analog airspeed port. Set to 15 on the Pixhawk for the analog airspeed port. Set to 65 on the PX4 or Pixhawk for an EagleTree or MEAS I2C airspeed sensor.
+    // @User: Advanced
+    AP_GROUPINFO("PIN",  1, AP_Energy_Sensor, _pin, ENERGY_DEFAULT_PIN),
+
+    // @Param: USE
+    // @DisplayName: Energy use
+    // @Description: use energy for flight control
+    // @Values: 1:Use,0:Don't Use
+    AP_GROUPINFO("USE",    2, AP_Energy_Sensor, _use, 0),
+
+
+    // @Param: OFFSET
+    // @DisplayName: Energy offset
+    // @Description: Airspeed calibration offset
+    // @Increment: 0.1
+    AP_GROUPINFO("OFFSET", 3, AP_Energy_Sensor, _offset, 0),
+
+    AP_GROUPEND
+}
+
+//all below code is from the analog modifeid code
 // scaling for 3DR analog airspeed sensor
 #define INPUT_TO_VOLTS (5.0/1024.0) //this is the value used from the mega, might be different
 #define VOLTS_TO_KPA -2.5f //defined by sensor conversion
@@ -35,18 +71,13 @@ extern const AP_HAL::HAL& hal;
 extern AP_ADC_ADS7844 apm1_adc;
 #endif
 
-bool AP_Energy_Sensor::init()
-{
-    tempoaryPressure = 0; //this might need to be in different location, based on code strucutre?
-#if CONFIG_HAL_BOARD == HAL_BOARD_APM1
-    if (_pin == 64) {
-        _source = new AP_ADC_AnalogSource( &apm1_adc, 7, 1.0f);
-        return true;
-    }
-#endif
+void AP_Energy_Sensor::init() {
+    _last_pressure = 0;
     _source = hal.analogin->channel(_pin);
-    return true;
+
 }
+
+
 
 // read the airspeed sensor
 bool AP_Energy_Sensor::get_energy(float &diff)
@@ -55,7 +86,7 @@ bool AP_Energy_Sensor::get_energy(float &diff)
         return false;
     }
     _source->set_pin(_pin);
-    pressure = _source->voltage_average_ratiometric() * INPUT_TO_VOLTS;
+    voltage = _source->voltage_average_ratiometric() * INPUT_TO_VOLTS;
     pressure = voltage + VOLTS_TO_KPA;
 
     //configure for energy usage

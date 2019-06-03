@@ -385,6 +385,10 @@ private:
     // Airspeed Sensors
     AP_Airspeed airspeed {aparm};
 
+    //Energy sensor 
+
+    AP_Energy energy{aparm};
+
     // ACRO controller state
     struct {
         bool locked_roll;

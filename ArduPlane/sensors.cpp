@@ -69,6 +69,14 @@ void Plane::read_airspeed(void)
     }
 }
 
+//ask energy sensor for new update
+void Plane::read_energy(void) {
+
+    if (energy.enabled()) {
+        energy.read();
+    }
+}
+
 void Plane::zero_airspeed(bool in_startup)
 {
     airspeed.calibrate(in_startup);

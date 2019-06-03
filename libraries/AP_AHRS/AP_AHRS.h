@@ -409,6 +409,9 @@ protected:
 
     // pointer to airspeed object, if available
     AP_Airspeed     * _airspeed;
+    
+    //pointer to energy object, if available
+    AP_Energy      *_energy;
 
     // time in microseconds of last compass update
     uint32_t _compass_last_update;

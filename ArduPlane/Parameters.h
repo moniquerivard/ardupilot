@@ -199,6 +199,7 @@ public:
         k_param_NavEKF,  // Extended Kalman Filter Inertial Navigation Group
         k_param_mission, // mission library
         k_param_serial_manager, // serial manager library
+        k_param_energy, //AP_Energy paramaters
 
         //
         // 150: Navigation parameters
