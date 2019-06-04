@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\libraries",
-    "\\libraries\\AP_Airspeed",
     "\\libraries\\AP_Param"
   ],
-  "SelectedNode": "\\libraries\\AP_Airspeed\\AP_Airspeed_Backend.h",
+  "SelectedNode": "\\libraries\\AP_Energy",
   "PreviewInSolutionExplorer": false
 }
