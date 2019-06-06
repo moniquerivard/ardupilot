@@ -2,7 +2,7 @@
 # Find Arduino, if not explicitly specified
 #
 
-ARDUINO := $(C:/Arduino-1.0.3-windows)
+ARDUINO = C:/Arduino-1.0.3-windows
 
 ifeq ($(ARDUINO),)
 
