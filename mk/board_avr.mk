@@ -67,6 +67,7 @@ LIBOBJS			:=	$(SKETCHLIBOBJS)
 
 HARDWARE ?= arduino
 BOARD ?= mega2560
+ARDUINO := $(C:/Arduino-1.0.3-windows)
 
 # Find the hardware directory to use
 HARDWARE_DIR		:=	$(firstword $(wildcard $(SKETCHBOOK)/hardware/$(HARDWARE) \
