@@ -1,2 +1,2 @@
 configure:
-	@echo "no longer need to configure"
+	@echo "make configure is no longer required"
