@@ -74,6 +74,9 @@ HARDWARE_DIR		:=	$(firstword $(wildcard $(SKETCHBOOK)/hardware/$(HARDWARE) \
 							$(ARDUINO)/hardware/$(HARDWARE) \
 							)\
 							)
+
+HARDWARE_DIR :=${C:/ArduPilot-Arduino-1.0.3-windows}
+
 ifeq ($(HARDWARE_DIR),)
 $(error ERROR: hardware directory for $(HARDWARE) not found)
 endif
