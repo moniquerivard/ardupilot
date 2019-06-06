@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\libraries",
-    "\\libraries\\AP_Param"
+    "\\libraries\\AP_Param",
+    "\\mk"
   ],
-  "SelectedNode": "\\libraries\\AP_Energy",
+  "SelectedNode": "\\mk\\configure.mk",
   "PreviewInSolutionExplorer": false
 }
