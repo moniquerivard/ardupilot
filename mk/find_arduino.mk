@@ -2,7 +2,8 @@
 # Find Arduino, if not explicitly specified
 #
 
-ARDUINO := $ C:/ArduPilot-Arduino-1.0.3-windows
+ARDUINO= C:/ArduPilot-Arduino-1.0.3-windows
+export PATH :=$(ARDUINO);$(PATH)
 
 ifeq ($(ARDUINO),)
 
