@@ -36,7 +36,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-#include <AP_HAL.h>
+#include <AP_HAL/AP_HAL.h>
 #include <AP_Common/AP_Common.h>
 #include <AP_Progmem/AP_Progmem.h>
 #include <AP_Menu/AP_Menu.h>
