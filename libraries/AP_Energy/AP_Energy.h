@@ -60,7 +60,7 @@ public:
 	void log_mavlink_send(mavlink_channel_t chan, const Vector3f &vground);
 
     // return health status of sensor
-    bool healthy(void) const { return _healthy}
+    bool healthy(void) const { return _healthy;}
 
     // return time in ms of last update
     uint32_t last_update_ms(void) const { return _last_update_ms; }
