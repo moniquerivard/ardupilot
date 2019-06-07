@@ -22,8 +22,9 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Plane.h"
 #include <AP_HAL.h>
+#include "Plane.h"
+
 
 #define SCHED_TASK(func, _interval_ticks, _max_time_micros) {\
     .function = FUNCTOR_BIND(&plane, &Plane::func, void),\
