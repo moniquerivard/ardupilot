@@ -39,9 +39,10 @@ public:
     FUNCTOR_TYPEDEF(print_mode_fn, void, AP_HAL::BetterStream*, uint8_t);
     FUNCTOR_TYPEDEF(vehicle_startup_message_Log_Writer, void);
     DataFlash_Class(const prog_char_t *firmware_string) :
-        _startup_messagewriter(DFMessageWriter_DFLogStart(*this,firmware_string)),
-        _vehicle_messages(NULL)
-        { }
+    _firmware_string(firmware_string)
+        {
+        AP_Param::setup_object_defaults(this, var_info);
+        }
 
     void set_mission(const AP_Mission *mission);
 
