@@ -23,7 +23,7 @@
  */
 
 #include "Plane.h"
-#include <AP_HAL/AP_HAL.h>
+#include <AP_HAL.h>
 
 #define SCHED_TASK(func, _interval_ticks, _max_time_micros) {\
     .function = FUNCTOR_BIND(&plane, &Plane::func, void),\
