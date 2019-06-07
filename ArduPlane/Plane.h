@@ -5,8 +5,7 @@
 
 #define THISFIRMWARE "ArduPlane V3.4.0"
 #define FIRMWARE_VERSION 3,4,0,FIRMWARE_VERSION_TYPE_OFFICIAL
-
-test 
+ 
 /*
    Lead developer: Andrew Tridgell
  
