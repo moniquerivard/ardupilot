@@ -16,12 +16,10 @@ class AP_Energy
 public:
     // constructor
     AP_Energy(const AP_Vehicle::FixedWing &parms) :
-        _raw_energy(0.0f),
         _energy(0.0f),
         _last_pressure(0.0f),
         _raw_pressure(0.0f),
         _healthy(false),
-        _hil_set(false),
         _last_update_ms(0),
         analog(_pin)
     {
@@ -62,7 +60,7 @@ public:
 	void log_mavlink_send(mavlink_channel_t chan, const Vector3f &vground);
 
     // return health status of sensor
-    bool healthy(void) const { return _healthy && fabsf(_offset) > 0; }
+    bool healthy(void) const { return _healthy}
 
     // return time in ms of last update
     uint32_t last_update_ms(void) const { return _last_update_ms; }
