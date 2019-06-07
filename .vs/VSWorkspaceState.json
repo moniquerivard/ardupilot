@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\mk"
+    "\\libraries",
+    "\\libraries\\APM_Control",
+    "\\libraries\\AP_HAL"
   ],
-  "SelectedNode": "\\mk\\configure.mk",
+  "SelectedNode": "\\ArduPlane",
   "PreviewInSolutionExplorer": false
 }
