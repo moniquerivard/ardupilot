@@ -70,7 +70,7 @@ private:
 class DFMessageWriter_DFLogStart : public DFMessageWriter {
 public:
     DFMessageWriter_DFLogStart(DataFlash_Class &DataFlash,
-                               const char *firmware_string) :
+                               const prog_char_t *firmware_string) :
         DFMessageWriter{DataFlash},
         _writesysinfo(DataFlash, firmware_string),
         _writeentiremission(DataFlash)
