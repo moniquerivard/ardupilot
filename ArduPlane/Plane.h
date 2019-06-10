@@ -170,7 +170,9 @@ private:
     // notification object for LEDs, buzzers etc (parameter set to false disables external leds)
     AP_Notify notify;
 
-    DataFlash_Class DataFlash{ FIRMWARE_STRING };
+   // DataFlash_Class DataFlash{ FIRMWARE_STRING };
+    
+    DataFlash_Class DataFlash;
 
     // has a log download started?
     bool in_log_download;
