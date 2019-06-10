@@ -41,7 +41,7 @@ private:
     };
     write_sysinfo_blockwriter_stage stage;
 
-    const prog_char_t *_firmware_string;
+    const char *_firmware_string;
 };
 
 class DFMessageWriter_WriteEntireMission : public DFMessageWriter {
