@@ -736,6 +736,7 @@ private:
     void Log_Write_RC(void);
     void Log_Write_Baro(void);
     void Log_Write_Airspeed(void);
+    void Log_Write_Energy(void);
     void Log_Write_Home_And_Origin();
     void Log_Write_Vehicle_Startup_Messages();
     void Log_Read(uint16_t log_num, int16_t start_page, int16_t end_page);
@@ -847,6 +848,7 @@ private:
     void read_rangefinder(void);
     void read_airspeed(void);
     void zero_airspeed(bool in_startup);
+    void read_energy(void);
     void read_battery(void);
     void read_receiver_rssi(void);
     void report_radio();

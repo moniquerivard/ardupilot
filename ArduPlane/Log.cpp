@@ -460,6 +460,13 @@ void Plane::Log_Write_Airspeed(void)
     DataFlash.Log_Write_Airspeed(airspeed);
 }
 
+//Write an Energy packet
+
+//void Plane::Log_Write_Performance(void)
+{
+   // DataFlash.Log_Write_EntireMission(energy);
+}
+
 // log ahrs home and EKF origin to dataflash
 void Plane::Log_Write_Home_And_Origin()
 {
