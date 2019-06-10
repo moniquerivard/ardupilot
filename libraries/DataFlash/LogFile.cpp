@@ -336,16 +336,16 @@ void DataFlash_Backend::_print_log_entry(uint8_t msg_type,
                                          AP_HAL::BetterStream *port)
 {
     uint8_t i;
-    for (i=0; i<num_types(); i++) {
-        if (msg_type == structure(i)->msg_type) {
+    for (i=0; i<_num_types(); i++) {
+        if (msg_type == _structures(i)->msg_type) {
             break;
         }
     }
-    if (i == num_types()) {
+    if (i == _num_types()) {
         port->printf("UNKN, %u\n", (unsigned)msg_type);
         return;
     }
-    const struct LogStructure *log_structure = structure(i);
+    const struct LogStructure *log_structure = _structures(i);
     uint8_t msg_len = log_structure->msg_len - 3;
     uint8_t pkt[msg_len];
     if (!ReadBlock(pkt, msg_len)) {
@@ -507,8 +507,8 @@ void DataFlash_Backend::_print_log_entry(uint8_t msg_type,
  */
 void DataFlash_Block::_print_log_formats(AP_HAL::BetterStream *port)
 {
-    for (uint8_t i=0; i<num_types(); i++) {
-        const struct LogStructure *s = structure(i);
+    for (uint8_t i=0; i<_num_types(); i++) {
+        const struct LogStructure *s = _structures(i);
         port->printf("FMT, %u, %u, %s, %s, %s\n", s->msg_type,  s->msg_len,
                      s->name, s->format, s->labels);
     }
