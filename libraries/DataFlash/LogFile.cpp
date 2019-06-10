@@ -10,7 +10,7 @@
 #include <AP_Math/AP_Math.h>
 #include <AP_Param/AP_Param.h>
 
-#include "AP_HAL_AVR.h "
+#include "AP_HAL_AVR.h"
 #include "DataFlash.h"
 #include "DataFlash_SITL.h"
 #include "DataFlash_Block.h"
@@ -18,7 +18,6 @@
 #include "DFMessageWriter.h"
 
 extern const AP_HAL::HAL& hal;
-extern const AP_HAL_AVR::
 
 void DataFlash_Class::Init(const struct LogStructure *structures, uint8_t num_types)
 {
