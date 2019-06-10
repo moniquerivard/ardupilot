@@ -1934,7 +1934,7 @@ void Plane::gcs_send_text_fmt(const prog_char_t *fmt, ...)
             sizeof(gcs[0].pending_status.text), fmt, arg_list);
     va_end(arg_list);
 #if LOGGING_ENABLED == ENABLED
-    DataFlash.Log_Write_Message(gcs[0].pending_status.text);
+    //DataFlash.Log_Write_Message(gcs[0].pending_status.text);
 #endif
     gcs[0].send_message(MSG_STATUSTEXT);
     for (uint8_t i=1; i<num_gcs; i++) {
