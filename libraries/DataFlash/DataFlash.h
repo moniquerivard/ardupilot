@@ -150,6 +150,7 @@ public:
 
     void periodic_tasks(); // may want to split this into GCS/non-GCS duties
 
+    DFMessageWriter_DFLogStart _startup_messagewriter;
     vehicle_startup_message_Log_Writer _vehicle_messages;
 
     // parameter support

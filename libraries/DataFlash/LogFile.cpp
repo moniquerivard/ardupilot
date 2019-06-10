@@ -16,6 +16,9 @@
 #include "DataFlash_Block.h"
 #include "DataFlash_File.h"
 #include "DFMessageWriter.h"
+#include "DataFlash_APM1.h"
+#include "DataFlash_APM2.h"
+
 
 extern const AP_HAL::HAL& hal;
 
@@ -354,8 +357,8 @@ void DataFlash_Backend::_print_log_entry(uint8_t msg_type,
                                          AP_HAL::BetterStream *port)
 {
     uint8_t i;
-    for (i=0; i<num_types(); i++) {
-        if (msg_type == structure(i)->msg_type) {
+    for (i=0; i<_num_types; i++) {
+        if (msg_type == &_structures[i].msg_type) {
             break;
         }
     }
