@@ -9,8 +9,8 @@
 #include <AP_HAL/AP_HAL.h>
 #include <AP_Math/AP_Math.h>
 #include <AP_Param/AP_Param.h>
+#include <AP_HAL_AVR/AP_HAL_AVR.h>
 
-#include "AP_HAL_AVR.h"
 #include "DataFlash.h"
 #include "DataFlash_SITL.h"
 #include "DataFlash_Block.h"
