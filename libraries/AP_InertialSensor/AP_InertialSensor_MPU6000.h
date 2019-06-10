@@ -131,8 +131,8 @@ private:
 #else
     // accumulation in timer - must be read with timer disabled
     // the sum of the values since last read
-    Vector3l _accel_sum;
-    Vector3l _gyro_sum;
+    Vector3f _accel_sum;
+    Vector3f _gyro_sum;
 #endif
     volatile uint16_t _sum_count;
     bool _fifo_mode;

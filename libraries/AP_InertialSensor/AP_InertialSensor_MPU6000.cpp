@@ -773,17 +773,9 @@ void AP_InertialSensor_MPU6000::_accumulate(uint8_t *samples, uint8_t n_samples)
         _accel_filtered = _accel_filter.apply(accel);
         _gyro_filtered = _gyro_filter.apply(gyro);
 #else
-        //_accel_sum += accel;
-        //_gyro_sum += gyro;
-
-        _accel_sum +=(accel);
-        _gyro_sum +=(gyro);
-        
-       /* Vector3<T>& Vector3<T>::operator +=(const Vector3<T> & v)
-        {
-            x += v.x; y += v.y; z += v.z;
-            return *this;
-        }*/
+        //sum is of type vectorl, but other is type vector3
+        _accel_sum += accel;
+        _gyro_sum += gyro;
 
 #endif
         _sum_count++;
