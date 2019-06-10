@@ -1023,7 +1023,7 @@ void DataFlash_Backend::Log_Write_EntireMission(const AP_Mission &mission)
 }
 
 // Write a text message to the log
-bool DataFlash_Backend::Log_Write_Message(const char *message)
+bool DataFlash_Backend::Log_Write_Message(const prog_char_t *message)
 {
     struct log_Message pkt = {
         LOG_PACKET_HEADER_INIT(LOG_MESSAGE_MSG),
