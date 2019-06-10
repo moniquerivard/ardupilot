@@ -24,7 +24,7 @@ protected:
 class DFMessageWriter_WriteSysInfo : public DFMessageWriter {
 public:
     DFMessageWriter_WriteSysInfo(DataFlash_Class &DataFlash,
-                                 const prog_char_t *firmware_string) :
+                                 const char *firmware_string) :
         DFMessageWriter(DataFlash),
         _firmware_string(firmware_string)
         { }
