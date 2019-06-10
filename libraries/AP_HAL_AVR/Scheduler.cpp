@@ -76,7 +76,7 @@ uint64_t AVRScheduler::millis64() {
 /*
   64 bit version of micros(). This wraps when 32 bit millis() wraps
  */
-uint64_t AVRScheduler::micros64() {
+uint64_t AP_HAL::micros64() {
     // this is slow, but solves the problem with logging uint64_t timestamps
     uint64_t ret = millis();
     ret *= 1000ULL;
@@ -225,7 +225,7 @@ void AVRScheduler::system_initialized() {
     _initialized = true;
 }
 
-void AVRScheduler::panic(const prog_char_t* errormsg) {
+void AP_HAL::panic(const prog_char_t* errormsg) {
     /* Suspend timer processes. We still want the timer event to go off
      * to run the _failsafe code, however. */
     _timer_suspended = true;
