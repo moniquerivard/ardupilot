@@ -229,7 +229,7 @@ struct PACKED log_Startup {
 };
 
 // do not add any extra log writes to this function; see LogStartup.cpp
-bool Plane::Log_Write_Startup(uint8_t type)
+void Plane::Log_Write_Startup(uint8_t type)
 {
     struct log_Startup pkt = {
         LOG_PACKET_HEADER_INIT(LOG_STARTUP_MSG),
@@ -237,7 +237,7 @@ bool Plane::Log_Write_Startup(uint8_t type)
         startup_type    : type,
         command_total   : mission.num_commands()
     };
-    return DataFlash.WriteBlock(&pkt, sizeof(pkt));
+    DataFlash.WriteBlock(&pkt, sizeof(pkt));
 }
 
 struct PACKED log_Control_Tuning {
