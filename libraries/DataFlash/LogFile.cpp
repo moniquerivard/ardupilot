@@ -14,7 +14,6 @@
 #include "DataFlash_SITL.h"
 #include "DataFlash_Block.h"
 #include "DataFlash_File.h"
-#include "DataFlash_MAVLink.h"
 #include "DFMessageWriter.h"
 #include "AP_Progmem_Identity.h"
 
