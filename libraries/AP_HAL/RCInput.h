@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef __AP_HAL_RC_INPUT_H__
+#define __AP_HAL_RC_INPUT_H__
 
 #include "AP_HAL_Namespace.h"
 
@@ -13,7 +15,7 @@ public:
      * known to the programmer. (Its too difficult to describe this dependency
      * in the C++ type system.)
      */
-    virtual void init() = 0;
+    virtual void init(void* implspecific) = 0;
     virtual void deinit() {};
 
     /**
@@ -54,3 +56,6 @@ public:
     /* execute receiver bind */
     virtual bool rc_bind(int dsmMode) { return false; };
 };
+
+#endif // __AP_HAL_RC_INPUT_H__
+

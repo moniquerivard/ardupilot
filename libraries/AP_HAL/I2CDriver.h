@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef __AP_HAL_I2C_DRIVER_H__
+#define __AP_HAL_I2C_DRIVER_H__
 
 #include <stdint.h>
 
@@ -38,12 +40,12 @@ public:
                                           uint8_t* data) = 0;
 #endif
 
-    virtual bool do_transfer(uint8_t address, const uint8_t *send,
-                             uint32_t send_len, uint8_t *recv,
-                             uint32_t recv_len) { return false;}
     virtual uint8_t lockup_count() = 0;
     void ignore_errors(bool b) { _ignore_errors = b; }
     virtual AP_HAL::Semaphore* get_semaphore() = 0;
 protected:
     bool _ignore_errors;
 };
+
+#endif // __AP_HAL_I2C_DRIVER_H__
+

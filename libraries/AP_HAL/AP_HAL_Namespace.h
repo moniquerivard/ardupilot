@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef __AP_HAL_NAMESPACE_H__
+#define __AP_HAL_NAMESPACE_H__
 
 #include "string.h"
 #include "utility/functor.h"
@@ -10,12 +12,8 @@ namespace AP_HAL {
 
     /* Toplevel class names for drivers: */
     class UARTDriver;
-    class I2CDevice;
-    class I2CDeviceManager;
     class I2CDriver;
-    class Device;
 
-    class SPIDevice;
     class SPIDeviceDriver;
     class SPIDeviceManager;
 
@@ -28,7 +26,6 @@ namespace AP_HAL {
     class RCOutput;
     class Scheduler;
     class Semaphore;
-    class OpticalFlow;
     
     class Util;
 
@@ -49,7 +46,7 @@ namespace AP_HAL {
      * Global names for all of the existing SPI devices on all platforms.
      */
 
-    enum SPIDeviceType {
+    enum SPIDevice {
         SPIDevice_Dataflash         = 0,
         SPIDevice_ADS7844           = 1,
         SPIDevice_MS5611            = 2,
@@ -65,6 +62,6 @@ namespace AP_HAL {
         SPIDevice_RASPIO            = 12
     };
 
-    // Must be implemented by the concrete HALs.
-    const HAL& get_HAL();
 }
+
+#endif // __AP_HAL_NAMESPACE_H__

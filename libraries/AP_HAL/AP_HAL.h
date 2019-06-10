@@ -1,4 +1,6 @@
-#pragma once
+
+#ifndef __AP_HAL_H__
+#define __AP_HAL_H__
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -6,7 +8,6 @@
 #include "AP_HAL_Namespace.h"
 #include "AP_HAL_Boards.h"
 #include "AP_HAL_Macros.h"
-#include "AP_HAL_Main.h"
 
 /* HAL Module Classes (all pure virtual) */
 #include "UARTDriver.h"
@@ -20,7 +21,6 @@
 #include "Scheduler.h"
 #include "Semaphores.h"
 #include "Util.h"
-#include "OpticalFlow.h"
 
 #include "utility/Print.h"
 #include "utility/Stream.h"
@@ -29,4 +29,5 @@
 /* HAL Class definition */
 #include "HAL.h"
 
-#include "system.h"
+#endif // __AP_HAL_H__
+
