@@ -14,6 +14,7 @@
 #include "DataFlash_SITL.h"
 #include "DataFlash_Block.h"
 #include "DataFlash_File.h"
+#include "DataFlash_MAVLink.h"
 #include "DFMessageWriter.h"
 
 extern const AP_HAL::HAL& hal;
@@ -1022,7 +1023,7 @@ void DataFlash_Backend::Log_Write_EntireMission(const AP_Mission &mission)
 }
 
 // Write a text message to the log
-bool DataFlash_Backend::Log_Write_Message(const prog_char_t *message)
+bool DataFlash_Backend::Log_Write_Message(const char *message)
 {
     struct log_Message pkt = {
         LOG_PACKET_HEADER_INIT(LOG_MESSAGE_MSG),
