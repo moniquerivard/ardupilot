@@ -23,7 +23,7 @@ extern const AP_HAL_AVR::
 void DataFlash_Class::Init(const struct LogStructure *structures, uint8_t num_types)
 {
     if (_next_backend == DATAFLASH_MAX_BACKENDS) {
-        __AP_HAL_SCHEDULER_H__::panic("Too many backends");
+       AVRScheduler::panic("Too many backends");
         return;
     }
     _num_types = num_types;
