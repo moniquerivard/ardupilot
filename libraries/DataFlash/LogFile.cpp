@@ -48,7 +48,7 @@ void DataFlash_Class::Init(const struct LogStructure *structures, uint8_t num_ty
         hal.scheduler->panic(PSTR("Unable to open dataflash"));
     }
     backend->Init(structure, num_types);
-
+/*
 #if defined(HAL_BOARD_LOG_DIRECTORY)
     if (_params.backend_types == DATAFLASH_BACKEND_FILE ||
         _params.backend_types == DATAFLASH_BACKEND_BOTH) {
@@ -93,7 +93,7 @@ void DataFlash_Class::Init(const struct LogStructure *structures, uint8_t num_ty
     for (uint8_t i=0; i<_next_backend; i++) {
         backends[i]->Init();
     }
-   
+    */
 }
 
 // This function determines the number of whole or partial log files in the DataFlash
