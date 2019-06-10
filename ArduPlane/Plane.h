@@ -172,7 +172,7 @@ private:
 
    // DataFlash_Class DataFlash{ FIRMWARE_STRING };
     
-    DataFlash_Class DataFlash;
+    DataFlash_Class DataFlash{ FIRMWARE_STRING };
 
     // has a log download started?
     bool in_log_download;
