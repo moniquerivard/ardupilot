@@ -44,7 +44,7 @@ class DataFlash_Class
 public:
     FUNCTOR_TYPEDEF(print_mode_fn, void, AP_HAL::BetterStream*, uint8_t);
     FUNCTOR_TYPEDEF(vehicle_startup_message_Log_Writer, void);
-    DataFlash_Class(const char* firmware_string) :
+    DataFlash_Class(const char *firmware_string) :
         _startup_messagewriter(DFMessageWriter_DFLogStart(*this, firmware_string)),
         _vehicle_messages(NULL)
     { }
