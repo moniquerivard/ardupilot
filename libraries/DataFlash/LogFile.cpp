@@ -71,9 +71,9 @@ void DataFlash_Class::Init(const struct LogStructure *structures, uint8_t num_ty
     }
 #endif
 
-    for (uint8_t i=0; i<_next_backend; i++) {
+   /* for (uint8_t i=0; i<_next_backend; i++) {
         backends[i]->Init();
-    }
+    }*/
 }
 
 // This function determines the number of whole or partial log files in the DataFlash
@@ -114,7 +114,7 @@ uint16_t DataFlash_Block::get_num_logs(void)
 // This function starts a new log file in the DataFlash
 uint16_t DataFlash_Block::start_new_log(void)
 {
-    _startup_messagewriter->reset();
+    _startup_messagewriter.reset();
 
     uint16_t last_page = find_last_page();
 
@@ -337,16 +337,16 @@ void DataFlash_Backend::_print_log_entry(uint8_t msg_type,
                                          AP_HAL::BetterStream *port)
 {
     uint8_t i;
-    for (i=0; i<num_types(); i++) {
-        if (msg_type == structure(i)->msg_type) {
+    for (i = 0; i < _num_types; i++) {
+        if (msg_type == PGM_UINT8(&_structures[i].msg_type)) {
             break;
         }
     }
-    if (i == num_types()) {
-        port->printf("UNKN, %u\n", (unsigned)msg_type);
+    if (i == _num_types) {
+        port->printf_P(PSTR("UNKN, %u\n"), (unsigned)msg_type);
         return;
     }
-    const struct LogStructure *log_structure = structure(i);
+    const struct LogStructure *log_structure = _structures[i];
     uint8_t msg_len = log_structure->msg_len - 3;
     uint8_t pkt[msg_len];
     if (!ReadBlock(pkt, msg_len)) {
@@ -508,8 +508,8 @@ void DataFlash_Backend::_print_log_entry(uint8_t msg_type,
  */
 void DataFlash_Block::_print_log_formats(AP_HAL::BetterStream *port)
 {
-    for (uint8_t i=0; i<num_types(); i++) {
-        const struct LogStructure *s = structure(i);
+    for (uint8_t i=0; i<_num_types; i++) {
+        const struct LogStructure *s = _structures[i];
         port->printf("FMT, %u, %u, %s, %s, %s\n", s->msg_type,  s->msg_len,
                      s->name, s->format, s->labels);
     }
