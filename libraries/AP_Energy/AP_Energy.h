@@ -21,8 +21,8 @@ public:
         _raw_pressure(0.0f),
         _healthy(false),
         _last_update_ms(0),
-        analog(_pin)
-        _hil_set(false);
+        analog(_pin),
+        _hil_set(false)
     {
 		AP_Param::setup_object_defaults(this, var_info);
     };
