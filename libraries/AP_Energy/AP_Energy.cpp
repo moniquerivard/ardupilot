@@ -98,7 +98,7 @@ void AP_Energy::read(void)
     if (!_enable) {
         return;
     }
-   float current_pressure = get_pressure;
+   float current_pressure = get_pressure();
     // remember raw pressure for logging
     _raw_pressure = current_pressure;
 
