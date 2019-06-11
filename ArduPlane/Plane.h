@@ -373,7 +373,7 @@ private:
     AP_Airspeed airspeed {aparm};
 
     //energy sensor
-    AP_Energy energy{ aparam };
+    AP_Energy energy{ aparm };
 
     // ACRO controller state
     struct {
