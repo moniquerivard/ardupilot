@@ -77,6 +77,7 @@ private:
     float           _energy;
     float			_last_pressure;
     float			_raw_pressure;
+    float           _hil_pressure;
     bool		    _healthy:1;
     uint32_t        _last_update_ms;
     bool            _hil_set :1;
