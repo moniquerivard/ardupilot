@@ -30,6 +30,7 @@
 #include <AP_InertialSensor/AP_InertialSensor.h>
 #include <AP_Baro/AP_Baro.h>
 #include <AP_Param/AP_Param.h>
+#include <AP_Energy/AP_Energy.h>
 
 #include <AP_OpticalFlow/AP_OpticalFlow.h>
 
@@ -406,6 +407,9 @@ protected:
 
     // pointer to airspeed object, if available
     AP_Airspeed     * _airspeed;
+
+    // pointer to energy object, if available
+    AP_Energy  * _energy;
 
     // time in microseconds of last compass update
     uint32_t _compass_last_update;
