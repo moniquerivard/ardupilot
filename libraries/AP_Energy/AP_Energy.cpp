@@ -52,7 +52,7 @@ const AP_Param::GroupInfo AP_Energy::var_info[] PROGMEM = {
     AP_GROUPINFO("USE",    2, AP_Energy, _use, 0),
 
     AP_GROUPEND
-}
+};
 
 /*
   this scaling factor converts from the old system where we used a 

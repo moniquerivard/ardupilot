@@ -26,7 +26,7 @@ public:
 		AP_Param::setup_object_defaults(this, var_info);
     };
 
-    void init(void);
+    void        init(void);
 
     // read the analog source and update _energy
     void        read(void);
