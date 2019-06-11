@@ -71,7 +71,7 @@ void AP_Energy::init()
     analog.init();
 }
 
-// read the airspeed sensor
+// read the energy sensor
 float AP_Energy::get_pressure(void)
 {
     //if sensor is not enabled, do not do anything
@@ -95,7 +95,7 @@ float AP_Energy::get_pressure(void)
 // read the airspeed sensor
 void AP_Energy::read(void)
 {
-    float energy_pressure;
+    float current_pressure;
     if (!_enable) {
         return;
     }
@@ -103,7 +103,7 @@ void AP_Energy::read(void)
     // remember raw pressure for logging
     _raw_pressure = current_pressure;
 
-    _energy = last_pressure-current_pressure; //calculate energy with the difference between current and previous
+    _energy = _last_pressure-current_pressure; //calculate energy with the difference between current and previous
     _last_pressure          = currrent_pressure; // update last_pressure to current for next comparison
     _last_update_ms         = hal.scheduler->millis(); //update time?
 }
