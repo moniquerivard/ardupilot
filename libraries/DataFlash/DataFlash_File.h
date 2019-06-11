@@ -10,8 +10,6 @@
 #ifndef DataFlash_File_h
 #define DataFlash_File_h
 
-#if HAL_OS_POSIX_IO
-
 #if CONFIG_HAL_BOARD == HAL_BOARD_PX4 || CONFIG_HAL_BOARD == HAL_BOARD_VRBRAIN
 #include <systemlib/perf_counter.h>
 #else
@@ -34,15 +32,11 @@ public:
     bool CardInserted(void);
 
     // erase handling
+    bool NeedErase(void);
     void EraseAll();
 
-    // possibly time-consuming preparation handling:
-    bool NeedPrep();
-    void Prep();
-
     /* Write a block of data at current offset */
-    bool WritePrioritisedBlock(const void *pBuffer, uint16_t size, bool is_critical);
-    uint16_t bufferspace_available();
+    void WriteBlock(const void *pBuffer, uint16_t size);
 
     // high level interface
     uint16_t find_last_log(void);
@@ -63,8 +57,7 @@ public:
 #if CONFIG_HAL_BOARD == HAL_BOARD_SITL || CONFIG_HAL_BOARD == HAL_BOARD_LINUX
     void flush(void);
 #endif
-    void periodic_fullrate(const uint32_t now);
-    
+
 private:
     int _write_fd;
     int _read_fd;
@@ -80,19 +73,6 @@ private:
     */
     bool ReadBlock(void *pkt, uint16_t size);
 
-    // possibly time-consuming preparations handling
-    void Prep_MinSpace();
-    uint16_t find_first_log(void);
-    uint64_t disk_space_avail();
-    uint64_t disk_space();
-    float avail_space_percent();
-
-#if CONFIG_HAL_BOARD == HAL_BOARD_SITL || CONFIG_HAL_BOARD == HAL_BOARD_LINUX
-    // I always seem to have less than 10% free space on my laptop:
-    const float min_avail_space_percent = 0.1f;
-#else
-    const float min_avail_space_percent = 10.0f;
-#endif
     // write buffer
     uint8_t *_writebuf;
     uint16_t _writebuf_size;
@@ -111,15 +91,6 @@ private:
 
     void _io_timer(void);
 
-    uint16_t critical_message_reserved_space() const {
-        // possibly make this a proportional to buffer size?
-        return 1024;
-    };
-    uint16_t non_messagewriter_message_reserved_space() const {
-        // possibly make this a proportional to buffer size?
-        return 1024;
-    };
-
 #if CONFIG_HAL_BOARD == HAL_BOARD_PX4 || CONFIG_HAL_BOARD == HAL_BOARD_VRBRAIN
     // performance counters
     perf_counter_t  _perf_write;
@@ -129,6 +100,6 @@ private:
 #endif
 };
 
-#endif // HAL_OS_POSIX_IO
 
 #endif // DataFlash_File_h
+
