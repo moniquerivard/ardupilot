@@ -15,13 +15,14 @@ class AP_Energy
 {
 public:
     // constructor
-    AP_Energy(const AP_Vehicle::FixedWing &parms) :
+    AP_Energy(const AP_Vehicle::FixedWing& parms) :
         _energy(0.0f),
         _last_pressure(0.0f),
         _raw_pressure(0.0f),
         _healthy(false),
         _last_update_ms(0),
         analog(_pin)
+        _hil_set(false);
     {
 		AP_Param::setup_object_defaults(this, var_info);
     };
@@ -78,6 +79,7 @@ private:
     float			_raw_pressure;
     bool		    _healthy:1;
     uint32_t        _last_update_ms;
+    bool            _hil_set :1;
 
     float get_pressure(void);
 
