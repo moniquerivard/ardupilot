@@ -8,7 +8,6 @@
 #include <AP_HAL/AP_HAL.h>
 #include <AP_HAL_AVR/AP_HAL_AVR.h>
 #include <AP_HAL_SITL/AP_HAL_SITL.h>
-#include <AP_HAL_Linux/AP_HAL_Linux.h>
 #include <AP_HAL_Empty/AP_HAL_Empty.h>
 #include <AP_HAL_PX4/AP_HAL_PX4.h>
 
@@ -41,6 +40,14 @@
 
 const AP_HAL::HAL& hal = AP_HAL_BOARD_DRIVER;
 
+#if CONFIG_HAL_BOARD == HAL_BOARD_APM2
+DataFlash_APM2 DataFlash;
+#elif CONFIG_HAL_BOARD == HAL_BOARD_APM1
+DataFlash_APM1 DataFlash;
+#else
+DataFlash_Empty DataFlash;
+#endif
+
 #define LOG_TEST_MSG 1
 
 struct PACKED log_Test {
@@ -52,44 +59,33 @@ struct PACKED log_Test {
 static const struct LogStructure log_structure[] PROGMEM = {
     LOG_COMMON_STRUCTURES,
     { LOG_TEST_MSG, sizeof(log_Test),       
-    "TEST", "HHHHii",        "V1,V2,V3,V4,L1,L2" }
+      "TEST", "HHHHii",        "V1,V2,V3,V4,L1,L2" }
 };
 
 #define NUM_PACKETS 500
 
 static uint16_t log_num;
 
-class DataFlashTest {
-public:
-    void setup();
-    void loop();
-
-private:
-
-    DataFlash_Class dataflash{PSTR("DF Test 0.1")};
-    void print_mode(AP_HAL::BetterStream *port, uint8_t mode);
-};
-
-static DataFlashTest dataflashtest;
-
-void DataFlashTest::setup(void)
+void setup()
 {
-    dataflash.Init(log_structure, ARRAY_SIZE(log_structure));
+    DataFlash.Init(log_structure, ARRAY_SIZE(log_structure));
 
     hal.console->println("Dataflash Log Test 1.0");
 
     // Test
     hal.scheduler->delay(20);
-    dataflash.ShowDeviceInfo(hal.console);
+    DataFlash.ReadManufacturerID();
+    hal.scheduler->delay(10);
+    DataFlash.ShowDeviceInfo(hal.console);
 
-    if (dataflash.NeedPrep()) {
-        hal.console->println("Preparing dataflash...");
-        dataflash.Prep();
+    if (DataFlash.NeedErase()) {
+        hal.console->println("Erasing...");
+        DataFlash.EraseAll();
     }
 
     // We start to write some info (sequentialy) starting from page 1
     // This is similar to what we will do...
-    log_num = dataflash.StartNewLog();
+    log_num = DataFlash.StartNewLog();
     hal.console->printf("Using log number %u\n", log_num);
     hal.console->println("After testing perform erase before using DataFlash for logging!");
     hal.console->println("");
@@ -104,62 +100,42 @@ void DataFlashTest::setup(void)
         // structures easier to follow        
         struct log_Test pkt = {
             LOG_PACKET_HEADER_INIT(LOG_TEST_MSG),
-            v1    : (uint16_t)(2000 + i),
-            v2    : (uint16_t)(2001 + i),
-            v3    : (uint16_t)(2002 + i),
-            v4    : (uint16_t)(2003 + i),
-            l1    : (int32_t)(i * 5000),
-            l2    : (int32_t)(i * 16268)
+            v1    : 2000 + i,
+            v2    : 2001 + i,
+            v3    : 2002 + i,
+            v4    : 2003 + i,
+            l1    : (long)i * 5000,
+            l2    : (long)i * 16268
         };
-        dataflash.WriteBlock(&pkt, sizeof(pkt));
+        DataFlash.WriteBlock(&pkt, sizeof(pkt));
         total_micros += hal.scheduler->micros() - start;
         hal.scheduler->delay(20);
     }
 
     hal.console->printf("Average write time %.1f usec/byte\n", 
-                       (double)total_micros/((double)i*sizeof(struct log_Test)));
-
-#if CONFIG_HAL_BOARD == HAL_BOARD_SITL || CONFIG_HAL_BOARD == HAL_BOARD_LINUX
-    dataflash.flush();
-#endif
+                        (double)total_micros/((float)i*sizeof(struct log_Test)));
 
     hal.scheduler->delay(100);
 }
 
-void DataFlashTest::loop(void)
+static void
+print_mode(AP_HAL::BetterStream *port, uint8_t mode)
+{
+    port->printf_P(PSTR("Mode(%u)"), (unsigned)mode);
+}
+
+void loop()
 {
     uint16_t start, end;
 
     hal.console->printf("Start read of log %u\n", log_num);
 
-    dataflash.get_log_boundaries(log_num, start, end); 
-    dataflash.LogReadProcess(log_num, start, end, 
-                             FUNCTOR_BIND_MEMBER(&DataFlashTest::print_mode, void, AP_HAL::BetterStream *, uint8_t),//print_mode,
+    DataFlash.get_log_boundaries(log_num, start, end); 
+	DataFlash.LogReadProcess(log_num, start, end, 
+                             print_mode,
                              hal.console);
     hal.console->printf("\nTest complete.  Test will repeat in 20 seconds\n");
     hal.scheduler->delay(20000);
-}
-
-void DataFlashTest::print_mode(AP_HAL::BetterStream *port, uint8_t mode)
-{
-    port->printf_P(PSTR("Mode(%u)"), (unsigned)mode);
-}
-
-/*
-  compatibility with old pde style build
- */
-void setup(void);
-void loop(void);
-
-void setup()
-{
-    dataflashtest.setup();
-}
-
-
-void loop()
-{
-    dataflashtest.loop();
 }
 
 AP_HAL_MAIN();
