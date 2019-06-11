@@ -27,7 +27,7 @@
 
 extern const AP_HAL::HAL& hal;
 
-// scaling for 3DR analog airspeed sensor
+// scaling for energy sensor
 #define VOLTS_TO_KPA -2.5f //defined by sensor conversion
 
 bool AP_Energy_Analog :: init()
@@ -36,7 +36,7 @@ bool AP_Energy_Analog :: init()
     return true;
 }
 
-// read the airspeed sensor
+// read the energy sensor
 bool AP_Energy_Analog::get_differential_pressure(float &pressure)
 {
     if (_source == NULL) {

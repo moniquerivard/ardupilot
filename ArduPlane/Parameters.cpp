@@ -1144,7 +1144,7 @@ const AP_Param::Info Plane::var_info[] PROGMEM = {
     GOBJECT(airspeed,                               "ARSPD_",   AP_Airspeed),
 
     // @Group: ENEG_
-    // @Path: ../libraries/AP_Airspeed/AP_Airspeed.cpp
+    // @Path: ../libraries/AP_Energy/AP_Energy.cpp
         GOBJECT(energy, "ENEG_", AP_Energy),
 
     // @Group: NAVL1_

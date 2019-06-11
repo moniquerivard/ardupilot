@@ -14,7 +14,7 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 /*
- *   APM_Airspeed.cpp - airspeed (pitot) driver
+ *   AP_Energy.cpp - energy (pitot) driver
  */
 
 
@@ -92,7 +92,7 @@ float AP_Energy::get_pressure(void)
 
 //no callibration needed? taking the difference?
 
-// read the airspeed sensor
+// read the energy sensor
 void AP_Energy::read(void)
 {
     if (!_enable) {

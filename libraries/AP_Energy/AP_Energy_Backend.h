@@ -16,7 +16,7 @@
  */
 
 /*
-  backend driver class for airspeed
+  backend driver class for energy
  */
 
 #ifndef __AP_ENERGY_BACKEND_H__
