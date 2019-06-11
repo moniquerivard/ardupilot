@@ -1,10 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ArduPlane",
-    "\\libraries",
-    "\\libraries\\DataFlash"
+    "\\libraries\\DataFlash",
+    "\\mk"
   ],
-  "SelectedNode": "\\ArduPlane\\Plane.h",
+  "SelectedNode": "\\mk\\board_avr.mk",
   "PreviewInSolutionExplorer": false
 }
