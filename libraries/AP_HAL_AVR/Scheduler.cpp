@@ -10,6 +10,7 @@
 #include "Scheduler.h"
 #include "utility/ISRRegistry.h"
 #include "memcheck.h"
+
 using namespace AP_HAL_AVR;
 
 extern const AP_HAL::HAL& hal;
@@ -58,6 +59,7 @@ void AVRScheduler::init(void* _isrregistry) {
     memcheck_init();
 }
 
+/*
 uint32_t AVRScheduler::micros() {
     return _timer.micros();
 }
@@ -66,16 +68,16 @@ uint32_t AVRScheduler::millis() {
     return _timer.millis();
 }
 
-/*
-  64 bit version of millis(). This wraps at 32 bits on AVR
- */
+
+ // 64 bit version of millis(). This wraps at 32 bits on AVR
+
 uint64_t AVRScheduler::millis64() {
     return millis();
 }
 
-/*
-  64 bit version of micros(). This wraps when 32 bit millis() wraps
- */
+
+//  64 bit version of micros(). This wraps when 32 bit millis() wraps
+
 uint64_t AVRScheduler::micros64() {
     // this is slow, but solves the problem with logging uint64_t timestamps
     uint64_t ret = millis();
@@ -83,6 +85,7 @@ uint64_t AVRScheduler::micros64() {
     ret += micros() % 1000UL;
     return ret;
 }
+*/
 
 void AVRScheduler::delay_microseconds(uint16_t us) {
     _timer.delay_microseconds(us);
@@ -225,16 +228,18 @@ void AVRScheduler::system_initialized() {
     _initialized = true;
 }
 
+/*
 void AVRScheduler::panic(const prog_char_t* errormsg) {
-    /* Suspend timer processes. We still want the timer event to go off
-     * to run the _failsafe code, however. */
+    // Suspend timer processes. We still want the timer event to go off
+    // to run the _failsafe code, however. 
     _timer_suspended = true;
-    /* Print the error message on both ports */
+    //Print the error message on both ports
     hal.uartA->println_P(errormsg);
     hal.uartC->println_P(errormsg);
-    /* Spin forever. */
+    // Spin forever. 
     for(;;);
 }
+*/
 
 void AVRScheduler::reboot(bool hold_in_bootloader) {
     hal.uartA->println_P(PSTR("GOING DOWN FOR A REBOOT\r\n"));

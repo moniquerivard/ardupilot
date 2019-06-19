@@ -50,9 +50,6 @@ public:
     void        Init(const struct LogStructure *structure, uint8_t num_types);
     void        ReadManufacturerID();
     bool        CardInserted();
-
-    void WroteStartupFormat();
-    void WroteStartupParam();
 };
 
 #endif

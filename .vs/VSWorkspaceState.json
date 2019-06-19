@@ -1,6 +1,15 @@
 {
   "ExpandedNodes": [
+<<<<<<< HEAD
     ""
   ],
+=======
+    "",
+    "\\libraries",
+    "\\libraries\\APM_Control",
+    "\\libraries\\AP_HAL"
+  ],
+  "SelectedNode": "\\ArduPlane",
+>>>>>>> 3352cc8ef15f0e122533f38baaccebe0ae9bb041
   "PreviewInSolutionExplorer": false
 }

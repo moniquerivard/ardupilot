@@ -5,7 +5,7 @@
 
 #define THISFIRMWARE "ArduPlane V3.4.0"
 #define FIRMWARE_VERSION 3,4,0,FIRMWARE_VERSION_TYPE_OFFICIAL
-
+ 
 /*
    Lead developer: Andrew Tridgell
  
@@ -57,6 +57,7 @@
 #include <AP_Relay/AP_Relay.h>       // APM relay
 #include <AP_Camera/AP_Camera.h>          // Photo or video camera
 #include <AP_Airspeed/AP_Airspeed.h>
+#include <AP_Energy/AP_Energy.h>
 #include <AP_Terrain/AP_Terrain.h>
 
 #include <APM_OBC/APM_OBC.h>
@@ -169,7 +170,9 @@ private:
     // notification object for LEDs, buzzers etc (parameter set to false disables external leds)
     AP_Notify notify;
 
-    DataFlash_Class DataFlash{FIRMWARE_STRING};
+   // DataFlash_Class DataFlash{ FIRMWARE_STRING };
+    
+    DataFlash_Class DataFlash;
 
     // has a log download started?
     bool in_log_download;
@@ -721,7 +724,7 @@ private:
     void do_erase_logs(void);
     void Log_Write_Attitude(void);
     void Log_Write_Performance();
-    bool Log_Write_Startup(uint8_t type);
+    void Log_Write_Startup(uint8_t type);
     void Log_Write_Control_Tuning();
     void Log_Write_TECS_Tuning(void);
     void Log_Write_Nav_Tuning();
@@ -735,6 +738,7 @@ private:
     void Log_Write_RC(void);
     void Log_Write_Baro(void);
     void Log_Write_Airspeed(void);
+    void Log_Write_Energy(void);
     void Log_Write_Home_And_Origin();
     void Log_Write_Vehicle_Startup_Messages();
     void Log_Read(uint16_t log_num, int16_t start_page, int16_t end_page);
@@ -846,6 +850,7 @@ private:
     void read_rangefinder(void);
     void read_airspeed(void);
     void zero_airspeed(bool in_startup);
+    void read_energy(void);
     void read_battery(void);
     void read_receiver_rssi(void);
     void report_radio();
