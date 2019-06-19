@@ -73,7 +73,7 @@ $(error ERROR: hardware directory for $(HARDWARE) not found)
 endif
 
 # Find the boards.txt that we are using
-BOARDFILE		:=	$(wildcard $(HARDWARE_DIR)/boards.txt)
+BOARDFILE		:=	$(wildcard $(HARDWARE_DIR)/arduino/boards.txt)
 ifeq ($(BOARDFILE),)
 $(error ERROR: could not locate boards.txt for hardware $(HARDWARE))
 endif
