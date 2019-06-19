@@ -51,7 +51,6 @@ void Plane::read_airspeed(void)
             barometer.set_external_temperature(temperature);
         }
     }
-
     // update smoothed airspeed estimate
     float aspeed;
     if (ahrs.airspeed_estimate(&aspeed)) {
