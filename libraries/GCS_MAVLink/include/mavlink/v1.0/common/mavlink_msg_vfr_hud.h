@@ -100,7 +100,7 @@ static inline uint16_t mavlink_msg_vfr_hud_pack(uint8_t system_id, uint8_t compo
  */
 static inline uint16_t mavlink_msg_vfr_hud_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
 							   mavlink_message_t* msg,
-						           float airspeed,float groundspeed,int16_t heading,uint16_t throttle,float alt,float climb)
+						           float airspeed,float groundspeed,int16_t heading,uint16_t throttle,float alt,float climb, float energy)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
 	char buf[MAVLINK_MSG_ID_VFR_HUD_LEN];
