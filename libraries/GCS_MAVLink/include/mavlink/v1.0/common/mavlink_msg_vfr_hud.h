@@ -13,11 +13,11 @@ typedef struct __mavlink_vfr_hud_t
  float energy; ///<current change in energy 
 } mavlink_vfr_hud_t;
 
-#define MAVLINK_MSG_ID_VFR_HUD_LEN 20
-#define MAVLINK_MSG_ID_74_LEN 20
+#define MAVLINK_MSG_ID_VFR_HUD_LEN 24
+#define MAVLINK_MSG_ID_74_LEN 24
 
-#define MAVLINK_MSG_ID_VFR_HUD_CRC 20
-#define MAVLINK_MSG_ID_74_CRC 20
+#define MAVLINK_MSG_ID_VFR_HUD_CRC 24
+#define MAVLINK_MSG_ID_74_CRC 24
 
 
 
