@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\libraries\\DataFlash",
-    "\\mk"
+    "\\libraries",
+    "\\libraries\\AP_Airspeed"
   ],
-  "SelectedNode": "\\mk\\board_avr.mk",
   "PreviewInSolutionExplorer": false
 }
