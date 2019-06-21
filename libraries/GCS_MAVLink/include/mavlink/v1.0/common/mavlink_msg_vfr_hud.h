@@ -23,7 +23,7 @@ typedef struct __mavlink_vfr_hud_t
 
 #define MAVLINK_MESSAGE_INFO_VFR_HUD { \
 	"VFR_HUD", \
-	6, \
+	7, \
 	{  { "airspeed", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_vfr_hud_t, airspeed) }, \
          { "groundspeed", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_vfr_hud_t, groundspeed) }, \
          { "alt", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_vfr_hud_t, alt) }, \
@@ -33,7 +33,6 @@ typedef struct __mavlink_vfr_hud_t
          { "energy", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_vfr_hud_t, energy) }, \
          } \
 }
-
 
 /**
  * @brief Pack a vfr_hud message
@@ -344,7 +343,7 @@ static inline void mavlink_msg_vfr_hud_decode(const mavlink_message_t* msg, mavl
 	vfr_hud->climb = mavlink_msg_vfr_hud_get_climb(msg);
 	vfr_hud->heading = mavlink_msg_vfr_hud_get_heading(msg);
 	vfr_hud->throttle = mavlink_msg_vfr_hud_get_throttle(msg);
-    vfr_hud->energy = mavlink_msg_vfr_hu_get_energy(msg);
+    vfr_hud->energy = mavlink_msg_vfr_hud_get_energy(msg);
 #else
 	memcpy(vfr_hud, _MAV_PAYLOAD(msg), MAVLINK_MSG_ID_VFR_HUD_LEN);
 #endif

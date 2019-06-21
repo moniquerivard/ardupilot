@@ -132,6 +132,9 @@ void Plane::send_extended_status1(mavlink_channel_t chan)
     if (gps.status() > AP_GPS::NO_GPS) {
         control_sensors_present |= MAV_SYS_STATUS_SENSOR_GPS;
     }
+    if (energy.enabled()) {
+        control_sensors_present |= MAV_SYS_STATUS_SENSOR_ENERGY;
+    }
 #if OPTFLOW == ENABLED
     if (optflow.enabled()) {
         control_sensors_present |= MAV_SYS_STATUS_SENSOR_OPTICAL_FLOW;

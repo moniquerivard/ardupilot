@@ -49,7 +49,7 @@ const AP_Param::GroupInfo AP_Energy::var_info[] PROGMEM = {
     // @DisplayName: Energy use
     // @Description: use energy for flight control
     // @Values: 1:Use,0:Don't Use
-    AP_GROUPINFO("USE",    2, AP_Energy, _use, 0),
+    AP_GROUPINFO("USE",    2, AP_Energy, _use, 1),
 
     AP_GROUPEND
 };
