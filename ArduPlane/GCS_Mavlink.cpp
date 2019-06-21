@@ -419,8 +419,8 @@ void Plane::send_vfr_hud(mavlink_channel_t chan)
         (ahrs.yaw_sensor / 100) % 360,
         throttle_percentage(),
         current_loc.alt / 100.0f,
-        barometer.get_climb_rate()),
-        engy;
+        barometer.get_climb_rate(),
+        engy);
 }
 
 /*
