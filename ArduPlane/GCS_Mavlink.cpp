@@ -132,9 +132,6 @@ void Plane::send_extended_status1(mavlink_channel_t chan)
     if (gps.status() > AP_GPS::NO_GPS) {
         control_sensors_present |= MAV_SYS_STATUS_SENSOR_GPS;
     }
-    if (energy.enabled()) {
-        control_sensors_present |= MAV_SYS_STATUS_SENSOR_ENERGY;
-    }
 #if OPTFLOW == ENABLED
     if (optflow.enabled()) {
         control_sensors_present |= MAV_SYS_STATUS_SENSOR_OPTICAL_FLOW;
@@ -403,19 +400,10 @@ void Plane::send_radio_out(mavlink_channel_t chan)
 void Plane::send_vfr_hud(mavlink_channel_t chan)
 {
     float aspeed;
-    float engy;
-
     if (airspeed.enabled()) {
         aspeed = airspeed.get_airspeed();
     } else if (!ahrs.airspeed_estimate(&aspeed)) {
         aspeed = 0;
-    }
-
-    if (energy.enabled()) {
-        engy = energy.get_energy();
-    }
-    else {
-        engy = 0;
     }
     mavlink_msg_vfr_hud_send(
         chan,
@@ -424,9 +412,7 @@ void Plane::send_vfr_hud(mavlink_channel_t chan)
         (ahrs.yaw_sensor / 100) % 360,
         throttle_percentage(),
         current_loc.alt / 100.0f,
-        barometer.get_climb_rate(),
-        engy
-    );
+        barometer.get_climb_rate());
 }
 
 /*
