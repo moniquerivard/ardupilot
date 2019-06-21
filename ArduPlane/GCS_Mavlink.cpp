@@ -400,11 +400,18 @@ void Plane::send_radio_out(mavlink_channel_t chan)
 void Plane::send_vfr_hud(mavlink_channel_t chan)
 {
     float aspeed;
+    float engy = 0;
+
     if (airspeed.enabled()) {
         aspeed = airspeed.get_airspeed();
     } else if (!ahrs.airspeed_estimate(&aspeed)) {
         aspeed = 0;
     }
+
+    if (energy.enabled()) {
+        engy = energy.get_energy();
+    }
+
     mavlink_msg_vfr_hud_send(
         chan,
         aspeed,
@@ -412,7 +419,8 @@ void Plane::send_vfr_hud(mavlink_channel_t chan)
         (ahrs.yaw_sensor / 100) % 360,
         throttle_percentage(),
         current_loc.alt / 100.0f,
-        barometer.get_climb_rate());
+        barometer.get_climb_rate()),
+        engy;
 }
 
 /*
