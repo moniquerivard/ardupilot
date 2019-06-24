@@ -152,6 +152,10 @@ void Plane::send_extended_status1(mavlink_channel_t chan)
         control_sensors_enabled |= MAV_SYS_STATUS_GEOFENCE;
     }
 
+    if (energy.enabled() && energy.use()) {
+        control_sensors_enabled |= MAV_SYS_STATUS_SENSOR_ENERGY;
+    }
+
     switch (control_mode) {
     case MANUAL:
         break;
@@ -409,7 +413,7 @@ void Plane::send_vfr_hud(mavlink_channel_t chan)
     }
 
     if (energy.enabled()) {
-        engy = energy.get_energy();
+        engy = engy.get_energy();
     }
 
     mavlink_msg_vfr_hud_send(
@@ -420,8 +424,11 @@ void Plane::send_vfr_hud(mavlink_channel_t chan)
         throttle_percentage(),
         current_loc.alt / 100.0f,
         barometer.get_climb_rate(),
-        engy);
+        engy
+    );
 }
+
+
 
 /*
   keep last HIL_STATE message to allow sending SIM_STATE
