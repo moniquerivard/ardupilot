@@ -109,6 +109,7 @@ static inline uint16_t mavlink_msg_vfr_hud_pack_chan(uint8_t system_id, uint8_t 
 	_mav_put_float(buf, 12, climb);
 	_mav_put_int16_t(buf, 16, heading);
 	_mav_put_uint16_t(buf, 18, throttle);
+    _mav_put_float(buf, 20, energy);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_VFR_HUD_LEN);
 #else
@@ -182,6 +183,7 @@ static inline void mavlink_msg_vfr_hud_send(mavlink_channel_t chan, float airspe
 	_mav_put_float(buf, 12, climb);
 	_mav_put_int16_t(buf, 16, heading);
 	_mav_put_uint16_t(buf, 18, throttle);
+    _mav_put_float(buf, 20, energy);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_VFR_HUD, buf, MAVLINK_MSG_ID_VFR_HUD_LEN, MAVLINK_MSG_ID_VFR_HUD_CRC);
@@ -224,6 +226,7 @@ static inline void mavlink_msg_vfr_hud_send_buf(mavlink_message_t *msgbuf, mavli
 	_mav_put_float(buf, 12, climb);
 	_mav_put_int16_t(buf, 16, heading);
 	_mav_put_uint16_t(buf, 18, throttle);
+    _mav_put_float(buf, 20, energy);
 
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_VFR_HUD, buf, MAVLINK_MSG_ID_VFR_HUD_LEN, MAVLINK_MSG_ID_VFR_HUD_CRC);
