@@ -430,7 +430,7 @@ void Plane::send_vfr_hud(mavlink_channel_t chan)
 
 void Plane::send_energy_sensor(mavlink_channel_t chan) {
 
-    char sensorName = 'energySensor';
+    char sensorName = 'engSen';
     const char *ptr = &sensorName;
     float energyTest = 0;
     
