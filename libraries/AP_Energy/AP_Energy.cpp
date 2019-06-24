@@ -87,7 +87,7 @@ float AP_Energy::get_pressure(void)
     //actually returning the pressure value from the sensor
     float pressure = 0;
     _healthy = analog.get_differential_pressure(pressure);
-    return pressure;
+    return pressure; //this is changed in get_diff_pressure bc passed by reference
 }
 
 //no callibration needed? taking the difference?
