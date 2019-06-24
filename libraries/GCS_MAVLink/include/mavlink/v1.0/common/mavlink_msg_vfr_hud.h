@@ -16,8 +16,8 @@ typedef struct __mavlink_vfr_hud_t
 #define MAVLINK_MSG_ID_VFR_HUD_LEN 24
 #define MAVLINK_MSG_ID_74_LEN 24
 
-#define MAVLINK_MSG_ID_VFR_HUD_CRC 20
-#define MAVLINK_MSG_ID_74_CRC 20
+#define MAVLINK_MSG_ID_VFR_HUD_CRC 22
+#define MAVLINK_MSG_ID_74_CRC 22
 
 
 
