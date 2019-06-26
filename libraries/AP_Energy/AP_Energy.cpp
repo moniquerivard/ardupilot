@@ -28,7 +28,7 @@ extern const AP_HAL::HAL& hal;
 
 //could add configs for other boards but just start here for now
 
-#define ENERGY_DEFAULT_PIN 3 //usually airspeed is 0
+#define ENERGY_DEFAULT_PIN 1 //usually airspeed is 0
 
 //table of user settable paramaters
 const AP_Param::GroupInfo AP_Energy::var_info[] PROGMEM = {
