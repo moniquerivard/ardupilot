@@ -418,13 +418,13 @@ void Plane::send_vfr_hud(mavlink_channel_t chan)
 
     mavlink_msg_vfr_hud_send(
         chan,
-        aspeed,
+        engy,
         gps.ground_speed(),
         (ahrs.yaw_sensor / 100) % 360,
         throttle_percentage(),
         current_loc.alt / 100.0f,
         barometer.get_climb_rate(),
-        engy
+        aspeed
     );
 }
 
