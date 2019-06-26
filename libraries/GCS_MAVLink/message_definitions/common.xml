@@ -1996,7 +1996,7 @@
           </message>
           <message id="74" name="VFR_HUD">
                <description>Metrics typically displayed on a HUD for fixed wing aircraft</description>
-               <field type="float" name="airspeed1">Current airspeed in m/s</field>
+               <field type="float" name="airspeed">Current airspeed in m/s</field>
                <field type="float" name="groundspeed">Current ground speed in m/s</field>
                <field type="int16_t" name="heading">Current heading in degrees, in compass units (0..360, 0=north)</field>
                <field type="uint16_t" name="throttle">Current throttle setting in integer percent, 0 to 100</field>
@@ -2685,7 +2685,7 @@
                <description>Send a key-value pair as float. The use of this message is discouraged for normal packets, but a quite efficient way for testing new messages and getting experimental debug output.</description>
                <field type="uint32_t" name="time_boot_ms">Timestamp (milliseconds since system boot)</field>
                <field type="char[10]" name="name">Name of the debug variable</field>
-               <field type="float" name="value">Floating point value</field>
+               <field type="float" name="energy">Floating point value</field>
           </message>
           <message id="252" name="NAMED_VALUE_INT">
                <description>Send a key-value pair as integer. The use of this message is discouraged for normal packets, but a quite efficient way for testing new messages and getting experimental debug output.</description>
