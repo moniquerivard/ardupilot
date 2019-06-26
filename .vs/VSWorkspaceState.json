@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\libraries",
+    "\\libraries\\GCS_MAVLink",
+    "\\libraries\\GCS_MAVLink\\include",
+    "\\libraries\\GCS_MAVLink\\include\\mavlink",
+    "\\libraries\\GCS_MAVLink\\include\\mavlink\\v1.0",
+    "\\modules",
+    "\\modules\\PX4Firmware"
+  ],
+  "SelectedNode": "\\libraries\\GCS_MAVLink\\include\\mavlink\\v1.0\\common\\mavlink_msg_vision_speed_estimate.h",
+  "PreviewInSolutionExplorer": false
+}
