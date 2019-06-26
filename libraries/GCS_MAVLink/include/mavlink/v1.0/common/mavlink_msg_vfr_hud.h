@@ -32,7 +32,6 @@ typedef struct __mavlink_vfr_hud_t
          } \
 }
 
-
 /**
  * @brief Pack a vfr_hud message
  * @param system_id ID of this system
