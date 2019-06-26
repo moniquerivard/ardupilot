@@ -692,9 +692,10 @@ bool GCS_MAVLINK::try_send_message(enum ap_message id)
         CHECK_PAYLOAD_SIZE(VFR_HUD);
         plane.send_vfr_hud(chan);
         break;
-    case MSG_ENERGY:
+    
+    /*case MSG_ENERGY:
         plane.send_energy_sensor(chan);
-        break;
+        break;*/
 
     case MSG_RAW_IMU1:
         CHECK_PAYLOAD_SIZE(RAW_IMU);
