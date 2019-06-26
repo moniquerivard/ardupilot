@@ -7,3 +7,19 @@
 [submodule "modules/uavcan"]
 	path = modules/uavcan
 	url = git://github.com/diydrones/uavcan.git
+[submodule "modules/mavlink"]
+	path = modules/mavlink
+	url = https://github.com/ArduPilot/mavlink
+[submodule "modules/ChibiOS"]
+	path = modules/ChibiOS
+	url = https://github.com/ArduPilot/ChibiOS
+[submodule "modules/gbenchmark"]
+	path = modules/gbenchmark
+	url = https://github.com/google/benchmark
+[submodule "modules/gtest"]
+	path = modules/gtest
+	url = https://github.com/ArduPilot/googletest
+[submodule "modules/waf"]
+	path = modules/waf
+	url = git://github.com/ArduPilot/waf.git
+
