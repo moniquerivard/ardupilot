@@ -418,13 +418,13 @@ void Plane::send_vfr_hud(mavlink_channel_t chan)
 
     mavlink_msg_vfr_hud_send(
         chan,
-        engy,
+        aspeed,
         gps.ground_speed(),
         (ahrs.yaw_sensor / 100) % 360,
         throttle_percentage(),
         current_loc.alt / 100.0f,
         barometer.get_climb_rate(),
-        aspeed
+        engy
     );
 }
 
@@ -434,9 +434,11 @@ void Plane::send_energy_sensor(mavlink_channel_t chan) {
     const char *ptr = &sensorName;
     float energyTest = 0;
     
+    /*
     if (energy.enabled()) {
         energyTest = energy.get_energy();
     }
+    */
 
     mavlink_msg_named_value_float_send(
         chan,
@@ -445,6 +447,7 @@ void Plane::send_energy_sensor(mavlink_channel_t chan) {
         energyTest
     );
 }
+
 
 
 /*

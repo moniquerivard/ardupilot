@@ -2681,7 +2681,7 @@
                <field type="float" name="y">y</field>
                <field type="float" name="z">z</field>
           </message>
-          <message id="251" name="NAMED_VALUE_FLOAT">
+          <message id="251" name="ENERGY">
                <description>Send a key-value pair as float. The use of this message is discouraged for normal packets, but a quite efficient way for testing new messages and getting experimental debug output.</description>
                <field type="uint32_t" name="time_boot_ms">Timestamp (milliseconds since system boot)</field>
                <field type="char[10]" name="name">Name of the debug variable</field>
