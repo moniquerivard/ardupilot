@@ -81,7 +81,7 @@ private:
 
     float get_pressure(void);
 
-    AP_Energy_Analog analog;
+    //AP_Energy_Analog analog;
 };
 
 
