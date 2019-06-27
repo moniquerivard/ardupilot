@@ -21,9 +21,6 @@ public:
         _healthy(false),
         _last_update_ms(0),
         _hil_set(false),
-        _source(NULL),
-        _pin(pin),
-        _last_pin(-1)
     {
 		AP_Param::setup_object_defaults(this, var_info);
     };
@@ -83,10 +80,6 @@ private:
     bool            _hil_set :1;
 
     float get_pressure(void);
-
-    AP_HAL::AnalogSource* _source;
-    const AP_Int8& _pin;
-    int8_t _last_pin;
 
     AP_Energy_Analog analog;
 };
