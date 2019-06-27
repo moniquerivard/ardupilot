@@ -103,7 +103,7 @@ void AP_Energy::read(void)
     _raw_pressure = current_pressure;
 
     //_energy = _last_pressure-current_pressure; //calculate energy with the difference between current and previous
-    _energy = _last_pressure;
+    _energy = current_pressure;
     _last_pressure          = current_pressure; // update last_pressure to current for next comparison
     _last_update_ms         = hal.scheduler->millis(); //update time?
 }

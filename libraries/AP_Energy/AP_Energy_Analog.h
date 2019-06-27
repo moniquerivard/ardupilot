@@ -6,7 +6,7 @@
 #include <AP_HAL/AP_HAL.h>
 #include "AP_Energy_Backend.h"
 
-class AP_Energy_Analog : public AP_Energy_Backend 
+class AP_Energy_Analog : public AP_Energy_Backend //do i need the backend code? what does this do?
 {
 public:
     AP_Energy_Analog(const AP_Int8& pin) :
