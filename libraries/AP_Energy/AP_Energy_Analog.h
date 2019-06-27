@@ -4,6 +4,7 @@
 #define __AP_ENERGY_ANALOG_H__
 
 #include <AP_HAL/AP_HAL.h>
+#include <AP_Common/AP_Common.h>
 
 class AP_Energy_Analog 
 {
