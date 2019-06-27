@@ -407,7 +407,7 @@ void Plane::send_vfr_hud(mavlink_channel_t chan)
     float engy = 0;
 
     if (airspeed.enabled()) {
-        aspeed = airspeed.get_airspeed();
+        aspeed = airspeed.get_raw_pressure(); //change back to get_airspeed
     } else if (!ahrs.airspeed_estimate(&aspeed)) {
         aspeed = 0;
     }
