@@ -9,7 +9,7 @@
 class AP_Energy_Analog 
 {
 public:
-    AP_Airspeed_Analog(const AP_Int8 &pin) : 
+    AP_Energy_Analog(const AP_Int8 &pin) : 
         _source(NULL),
         _pin(pin),
         _last_pin(-1)
