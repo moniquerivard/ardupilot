@@ -404,16 +404,12 @@ void Plane::send_radio_out(mavlink_channel_t chan)
 void Plane::send_vfr_hud(mavlink_channel_t chan)
 {
     float aspeed;
-    float engy = 0;
+    float engy = energy.get_energy();
 
     if (airspeed.enabled()) {
         aspeed = airspeed.get_raw_pressure(); //change back to get_airspeed
     } else if (!ahrs.airspeed_estimate(&aspeed)) {
         aspeed = 0;
-    }
-
-    if (energy.enabled()) {
-        engy = energy.get_energy();
     }
 
     mavlink_msg_vfr_hud_send(
