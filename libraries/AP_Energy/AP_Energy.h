@@ -14,7 +14,7 @@ class AP_Energy
 {
 public:
     // constructor
-    AP_Energy(const AP_Vehicle::FixedWing& parms):
+    AP_Energy(const AP_Vehicle::FixedWing& parms) :
         _energy(0.0f),
         _last_pressure(0.0f),
         _raw_pressure(0.0f),
