@@ -19,7 +19,6 @@ public:
         _raw_pressure(0.0f),
         _healthy(false),
         _last_update_ms(0),
-        analog(_pin),
         _hil_set(false),
         _source(NULL),
         _pin(pin),
@@ -74,7 +73,6 @@ public:
 private:
     AP_Int8         _use;
     AP_Int8         _enable;
-    AP_Int8         _pin;
     float           _energy;
     float			_last_pressure;
     float			_raw_pressure;
