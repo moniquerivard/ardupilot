@@ -78,12 +78,6 @@ float AP_Energy::get_pressure(void)
     if (!_enable) {
         return 0;
     }
-    //what is _hil_set?
-    if (_hil_set) {
-        _healthy = true;
-        return _hil_pressure;
-    }
-
     //actually returning the pressure value from the sensor
     float pressure = 0;
     _healthy = analog.get_differential_pressure(pressure);
@@ -99,8 +93,6 @@ void AP_Energy::read(void)
         return;
     }
    float current_pressure = get_pressure();
-    // remember raw pressure for logging
-    _raw_pressure = current_pressure;
 
     //_energy = _last_pressure-current_pressure; //calculate energy with the difference between current and previous
     _energy = current_pressure;
