@@ -152,6 +152,10 @@ void Plane::send_extended_status1(mavlink_channel_t chan)
         control_sensors_enabled |= MAV_SYS_STATUS_GEOFENCE;
     }
 
+    if (energy.enabled() && energy.use()) {
+        control_sensors_enabled |= MAV_SYS_STATUS_SENSOR_ENERGY;
+    }
+
     switch (control_mode) {
     case MANUAL:
         break;
@@ -400,7 +404,7 @@ void Plane::send_radio_out(mavlink_channel_t chan)
 void Plane::send_vfr_hud(mavlink_channel_t chan)
 {
     float aspeed;
-    float engy;
+    float engy = 0;
 
     if (airspeed.enabled()) {
         aspeed = airspeed.get_airspeed();
@@ -411,20 +415,39 @@ void Plane::send_vfr_hud(mavlink_channel_t chan)
     if (energy.enabled()) {
         engy = energy.get_energy();
     }
-    else {
-        engy = 0;
-    }
+
     mavlink_msg_vfr_hud_send(
         chan,
-        aspeed,
+        engy,
         gps.ground_speed(),
         (ahrs.yaw_sensor / 100) % 360,
         throttle_percentage(),
         current_loc.alt / 100.0f,
         barometer.get_climb_rate(),
-        engy
+        aspeed    
     );
 }
+
+/*
+void Plane::send_energy_sensor(mavlink_channel_t chan) {
+
+    char sensorName = 'engSen';
+    const char *ptr = &sensorName;
+    float energyTest = 0;
+    
+   
+    if (energy.enabled()) {
+        energyTest = energy.get_energy();
+    }
+    
+    mavlink_msg_named_value_float_send(
+        chan,
+        micros(),
+        ptr,
+        energyTest
+    );
+}
+*/
 
 /*
   keep last HIL_STATE message to allow sending SIM_STATE
@@ -669,6 +692,10 @@ bool GCS_MAVLINK::try_send_message(enum ap_message id)
         CHECK_PAYLOAD_SIZE(VFR_HUD);
         plane.send_vfr_hud(chan);
         break;
+    
+    /*case MSG_ENERGY:
+        plane.send_energy_sensor(chan);
+        break;*/
 
     case MSG_RAW_IMU1:
         CHECK_PAYLOAD_SIZE(RAW_IMU);

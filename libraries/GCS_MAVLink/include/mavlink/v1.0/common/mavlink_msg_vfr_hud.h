@@ -10,20 +10,18 @@ typedef struct __mavlink_vfr_hud_t
  float climb; ///< Current climb rate in meters/second
  int16_t heading; ///< Current heading in degrees, in compass units (0..360, 0=north)
  uint16_t throttle; ///< Current throttle setting in integer percent, 0 to 100
- float energy; ///<current change in energy 
+ float energy; ///< current energy, unitless
 } mavlink_vfr_hud_t;
 
 #define MAVLINK_MSG_ID_VFR_HUD_LEN 24
 #define MAVLINK_MSG_ID_74_LEN 24
 
-#define MAVLINK_MSG_ID_VFR_HUD_CRC 24
-#define MAVLINK_MSG_ID_74_CRC 24
-
-
+#define MAVLINK_MSG_ID_VFR_HUD_CRC 20
+#define MAVLINK_MSG_ID_74_CRC 20
 
 #define MAVLINK_MESSAGE_INFO_VFR_HUD { \
 	"VFR_HUD", \
-	6, \
+	7, \
 	{  { "airspeed", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_vfr_hud_t, airspeed) }, \
          { "groundspeed", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_vfr_hud_t, groundspeed) }, \
          { "alt", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_vfr_hud_t, alt) }, \
@@ -33,7 +31,6 @@ typedef struct __mavlink_vfr_hud_t
          { "energy", NULL, MAVLINK_TYPE_FLOAT, 0, 20, offsetof(mavlink_vfr_hud_t, energy) }, \
          } \
 }
-
 
 /**
  * @brief Pack a vfr_hud message
@@ -60,7 +57,6 @@ static inline uint16_t mavlink_msg_vfr_hud_pack(uint8_t system_id, uint8_t compo
 	_mav_put_float(buf, 12, climb);
 	_mav_put_int16_t(buf, 16, heading);
 	_mav_put_uint16_t(buf, 18, throttle);
-    _mav_put_float(buf, 20, energy);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_VFR_HUD_LEN);
 #else
@@ -244,6 +240,7 @@ static inline void mavlink_msg_vfr_hud_send_buf(mavlink_message_t *msgbuf, mavli
 	packet->throttle = throttle;
     packet->energy = energy;
 
+
 #if MAVLINK_CRC_EXTRA
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_VFR_HUD, (const char *)packet, MAVLINK_MSG_ID_VFR_HUD_LEN, MAVLINK_MSG_ID_VFR_HUD_CRC);
 #else
@@ -266,6 +263,16 @@ static inline void mavlink_msg_vfr_hud_send_buf(mavlink_message_t *msgbuf, mavli
 static inline float mavlink_msg_vfr_hud_get_airspeed(const mavlink_message_t* msg)
 {
 	return _MAV_RETURN_float(msg,  0);
+}
+
+/**
+ * @brief Get field energy from vfr_hud message
+ *
+ * @return Current energy change (unitless)
+ */
+static inline float mavlink_msg_vfr_hud_get_energy(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_float(msg, 20);
 }
 
 /**
@@ -319,17 +326,6 @@ static inline float mavlink_msg_vfr_hud_get_climb(const mavlink_message_t* msg)
 }
 
 /**
-* @brief Get energy from vfr_hud message  
-*
-* @return energy change - unitless 
-*/
-
-static inline float mavlink_msg_vfr_hud_get_energy(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_float(msg, 20);
-}
-
-/**
  * @brief Decode a vfr_hud message into a struct
  *
  * @param msg The message to decode
@@ -344,7 +340,10 @@ static inline void mavlink_msg_vfr_hud_decode(const mavlink_message_t* msg, mavl
 	vfr_hud->climb = mavlink_msg_vfr_hud_get_climb(msg);
 	vfr_hud->heading = mavlink_msg_vfr_hud_get_heading(msg);
 	vfr_hud->throttle = mavlink_msg_vfr_hud_get_throttle(msg);
-    vfr_hud->energy = mavlink_msg_vfr_hu_get_energy(msg);
+<<<<<<< HEAD
+    vfr_hud->energy = mavlink_msg_vfr_hud_get_energy(msg);
+=======
+>>>>>>> 3077c74ee91d0029a42aec501a722717a0015940
 #else
 	memcpy(vfr_hud, _MAV_PAYLOAD(msg), MAVLINK_MSG_ID_VFR_HUD_LEN);
 #endif

@@ -49,7 +49,7 @@ const AP_Param::GroupInfo AP_Energy::var_info[] PROGMEM = {
     // @DisplayName: Energy use
     // @Description: use energy for flight control
     // @Values: 1:Use,0:Don't Use
-    AP_GROUPINFO("USE",    2, AP_Energy, _use, 0),
+    AP_GROUPINFO("USE",    2, AP_Energy, _use, 1),
 
     AP_GROUPEND
 };
@@ -87,7 +87,7 @@ float AP_Energy::get_pressure(void)
     //actually returning the pressure value from the sensor
     float pressure = 0;
     _healthy = analog.get_differential_pressure(pressure);
-    return pressure;
+    return pressure; //this is changed in get_diff_pressure bc passed by reference
 }
 
 //no callibration needed? taking the difference?
@@ -102,7 +102,8 @@ void AP_Energy::read(void)
     // remember raw pressure for logging
     _raw_pressure = current_pressure;
 
-    _energy = _last_pressure-current_pressure; //calculate energy with the difference between current and previous
+    //_energy = _last_pressure-current_pressure; //calculate energy with the difference between current and previous
+    _energy = _last_pressure;
     _last_pressure          = current_pressure; // update last_pressure to current for next comparison
     _last_update_ms         = hal.scheduler->millis(); //update time?
 }
