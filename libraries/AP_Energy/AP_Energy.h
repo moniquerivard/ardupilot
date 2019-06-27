@@ -8,6 +8,7 @@
 #include <AP_Param/AP_Param.h>
 #include <GCS_MAVLink/GCS_MAVLink.h>
 #include <AP_Vehicle/AP_Vehicle.h>
+#include "AP_Energy_Analog.h"
 
 class AP_Energy
 {
@@ -86,6 +87,8 @@ private:
     AP_HAL::AnalogSource* _source;
     const AP_Int8& _pin;
     int8_t _last_pin;
+
+    AP_Energy_Analog analog;
 };
 
 
