@@ -2002,7 +2002,6 @@
                <field type="uint16_t" name="throttle">Current throttle setting in integer percent, 0 to 100</field>
                <field type="float" name="alt">Current altitude (MSL), in meters</field>
                <field type="float" name="climb">Current climb rate in meters/second</field>
-               <field type="float" name="energy">change in energy, unitless</field>
           </message>
           <message id="75" name="COMMAND_INT">
               <description>Message encoding a command with parameters as scaled integers. Scaling depends on the actual command value.</description>

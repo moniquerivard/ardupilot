@@ -59,51 +59,52 @@ const AP_Param::GroupInfo AP_Energy::var_info[] PROGMEM = {
   0 to 4095 raw ADC value for 0-5V to the new system which gets the
   voltage in volts directly from the ADC driver
  */
-#define SCALING_OLD_CALIBRATION 819 // 4095/5
+#define VOLTS_TO_PASCAL 819 // 4095/5
 
+//initialize
 void AP_Energy::init()
 {
     _last_pressure = 0;
-    //_calibration.init(_ratio);
-    //_last_saved_ratio = _ratio;
-    //_counter = 0;
-    
-    analog.init();
+    _source = hal.analogin->channel(_pin);
 }
 
-// read the energy sensor
+// get pressure value from sensor
 float AP_Energy::get_pressure(void)
 {
     //if sensor is not enabled, do not do anything
     if (!_enable) {
         return 0;
     }
-    //what is _hil_set?
     if (_hil_set) {
         _healthy = true;
         return _hil_pressure;
     }
 
+    if (_source == NULL) {
+        _healthy = false;
+    }
+    else _helathy = true;
+
     //actually returning the pressure value from the sensor
     float pressure = 0;
-    _healthy = analog.get_differential_pressure(pressure);
-    return pressure; //this is changed in get_diff_pressure bc passed by reference
+    
+    _source->set_pin(_pin);
+    pressure = _source->voltage_average_ratiometric() * VOLTS_TO_PASCAL;
+    
+    return pressure; 
 }
 
-//no callibration needed? taking the difference?
-
-// read the energy sensor
+// determine the actual energy value
 void AP_Energy::read(void)
 {
     if (!_enable) {
+        _energy = 0;
         return;
     }
-   float current_pressure = get_pressure();
-    // remember raw pressure for logging
-    _raw_pressure = current_pressure;
 
-    //_energy = _last_pressure-current_pressure; //calculate energy with the difference between current and previous
-    _energy = _last_pressure;
+    float current_pressure = get_pressure();
+
+    _energy = _last_pressure-current_pressure; //calculate energy with the difference between current and previous
     _last_pressure          = current_pressure; // update last_pressure to current for next comparison
     _last_update_ms         = hal.scheduler->millis(); //update time?
 }

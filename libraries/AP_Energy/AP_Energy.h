@@ -8,21 +8,22 @@
 #include <AP_Param/AP_Param.h>
 #include <GCS_MAVLink/GCS_MAVLink.h>
 #include <AP_Vehicle/AP_Vehicle.h>
-#include "AP_Energy_Backend.h"
-#include "AP_Energy_Analog.h"
 
 class AP_Energy
 {
 public:
     // constructor
-    AP_Energy(const AP_Vehicle::FixedWing& parms) :
+    AP_Energy(const AP_Vehicle::FixedWing& parms, const AP_Int8& pin) :
         _energy(0.0f),
         _last_pressure(0.0f),
         _raw_pressure(0.0f),
         _healthy(false),
         _last_update_ms(0),
         analog(_pin),
-        _hil_set(false)
+        _hil_set(false),
+        _source(NULL),
+        _pin(pin),
+        _last_pin(-1)
     {
 		AP_Param::setup_object_defaults(this, var_info);
     };
@@ -57,8 +58,8 @@ public:
         return _raw_pressure;
     }
 
-	// log data to MAVLink
-	void log_mavlink_send(mavlink_channel_t chan, const Vector3f &vground);
+	//log data to MAVLink -LOOK INTO CREATING ONE FOR THE ENERGY?
+	//void log_mavlink_send(mavlink_channel_t chan, const Vector3f &vground);
 
     // return health status of sensor
     bool healthy(void) const { return _healthy;}
@@ -84,7 +85,9 @@ private:
 
     float get_pressure(void);
 
-    AP_Energy_Analog analog;
+    AP_HAL::AnalogSource* _source;
+    const AP_Int8& _pin;
+    int8_t _last_pin;
 };
 
 
