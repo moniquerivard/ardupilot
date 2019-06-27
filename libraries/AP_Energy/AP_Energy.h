@@ -14,13 +14,13 @@ class AP_Energy
 {
 public:
     // constructor
-    AP_Energy(const AP_Vehicle::FixedWing& parms) :
+    AP_Energy(const AP_Vehicle::FixedWing& parms):
         _energy(0.0f),
         _last_pressure(0.0f),
         _raw_pressure(0.0f),
         _healthy(false),
         _last_update_ms(0),
-        _hil_set(false),
+        _hil_set(false)
     {
 		AP_Param::setup_object_defaults(this, var_info);
     };
