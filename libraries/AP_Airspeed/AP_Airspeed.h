@@ -76,10 +76,6 @@ public:
         return _raw_airspeed;
     }
 
-    float           get_raw_pressure(void) const {
-        return _raw_pressure;
-    }
-
     // return the current airspeed in cm/s
     float        get_airspeed_cm(void) const {
         return _airspeed*100;
