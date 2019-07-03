@@ -410,7 +410,7 @@ void Plane::send_vfr_hud(mavlink_channel_t chan)
         engy = energy.get_energy();
     }
     else{
-        engy = 2;
+        engy = 0;
     }
 
     if (airspeed.enabled()) {

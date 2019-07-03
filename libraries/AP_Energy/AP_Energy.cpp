@@ -111,7 +111,7 @@ float AP_Energy::get_pressure(void)
         _healthy = true;
         return _hil_pressure;
     }
-    float pressure = 0;
+    float pressure = 2;
     _healthy = analog.get_differential_pressure(pressure);
     return pressure;
 }
