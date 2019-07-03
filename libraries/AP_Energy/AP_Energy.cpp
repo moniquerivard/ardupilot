@@ -137,7 +137,6 @@ void AP_Energy::init()
     _counter = 0;
     
     analog.init();
-    digital.init();
 }
 
 // read the airspeed sensor
@@ -151,11 +150,7 @@ float AP_Energy::get_pressure(void)
         return _hil_pressure;
     }
     float pressure = 0;
-    if (_pin == AP_AIRSPEED_I2C_PIN) {
-        _healthy = digital.get_differential_pressure(pressure);
-    } else {
-        _healthy = analog.get_differential_pressure(pressure);
-    }
+    _healthy = analog.get_differential_pressure(pressure);
     return pressure;
 }
 
@@ -164,9 +159,6 @@ bool AP_Energy::get_temperature(float &temperature)
 {
     if (!_enable) {
         return false;
-    }
-    if (_pin == AP_AIRSPEED_I2C_PIN) {
-        return digital.get_temperature(temperature);
     }
     return false;
 }
