@@ -9,7 +9,7 @@
 #include <GCS_MAVLink/GCS_MAVLink.h>
 #include <AP_Vehicle/AP_Vehicle.h>
 #include "AP_Energy_Backend.h"
-#include "AP_Energy_analog.h"
+#include "AP_Energy_Analog.h"
 
 class Energy_Calibration {
 public:
@@ -179,22 +179,14 @@ private:
     float           _hil_pressure;
     uint32_t        _last_update_ms;
 
-    Airspeed_Calibration _calibration;
+    Energy_Calibration _calibration;
     float _last_saved_ratio;
     uint8_t _counter;
 
     float get_pressure(void);
 
-    AP_Airspeed_Analog analog;
-#if CONFIG_HAL_BOARD == HAL_BOARD_PX4 || CONFIG_HAL_BOARD == HAL_BOARD_VRBRAIN
-    AP_Airspeed_PX4    digital;
-#else
-    AP_Airspeed_I2C    digital;
-#endif
+    AP_Energy_Analog analog;
 };
 
-// the virtual pin for digital airspeed sensors
-#define AP_AIRSPEED_I2C_PIN 65
-
-#endif // __AP_AIRSPEED_H__
+#endif // __AP_ENERGY_H__
 
