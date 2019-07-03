@@ -4,7 +4,7 @@
 #define __AP_ENERGY_ANALOG_H__
 
 #include <AP_HAL/AP_HAL.h>
-#include "AP_AEergy_Backend.h"
+#include "AP_Energy_Backend.h"
 
 class AP_Energy_Analog : public AP_Energy_Backend
 {
