@@ -156,7 +156,7 @@ void AP_Energy::calibrate(bool in_startup)
     float raw = sum/count;
     _offset.set_and_save(raw);
     _airspeed = 0;
-    _raw_airspeed = 0;
+    //_raw_airspeed = 0;
 }
 
 // read the airspeed sensor

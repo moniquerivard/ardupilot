@@ -36,12 +36,6 @@ extern AP_ADC_ADS7844 apm1_adc;
 
 bool AP_Energy_Analog::init()
 {
-#if CONFIG_HAL_BOARD == HAL_BOARD_APM1
-    if (_pin == 64) {
-        _source = new AP_ADC_AnalogSource( &apm1_adc, 7, 1.0f);
-        return true;
-    }
-#endif
     _source = hal.analogin->channel(_pin);
     return true;
 }
