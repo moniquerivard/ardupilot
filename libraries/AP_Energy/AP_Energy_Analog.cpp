@@ -14,7 +14,7 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 /*
- *   analog energy snesor driver - using MPXV7002DP
+ *   analog airspeed driver
  */
 
 
@@ -27,26 +27,33 @@
 
 extern const AP_HAL::HAL& hal;
 
-// scaling for energy sensor
-//#define VOLTS_TO_KPA -2.5f //defined by sensor conversion
-
 // scaling for 3DR analog airspeed sensor
 #define VOLTS_TO_PASCAL 819
 
-bool AP_Energy_Analog :: init()
+#if CONFIG_HAL_BOARD == HAL_BOARD_APM1
+extern AP_ADC_ADS7844 apm1_adc;
+#endif
+
+bool AP_Energy_Analog::init()
 {
+#if CONFIG_HAL_BOARD == HAL_BOARD_APM1
+    if (_pin == 64) {
+        _source = new AP_ADC_AnalogSource( &apm1_adc, 7, 1.0f);
+        return true;
+    }
+#endif
     _source = hal.analogin->channel(_pin);
     return true;
 }
 
-// read the energy sensor
+// read the airspeed sensor
 bool AP_Energy_Analog::get_differential_pressure(float &pressure)
 {
     if (_source == NULL) {
         return false;
     }
     _source->set_pin(_pin);
-    pressure = _source->voltage_average_ratiometric()*VOLTS_TO_PASCAL;
+    pressure = _source->voltage_average_ratiometric() * VOLTS_TO_PASCAL;
     return true;
 }
 

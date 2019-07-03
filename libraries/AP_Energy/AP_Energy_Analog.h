@@ -4,12 +4,12 @@
 #define __AP_ENERGY_ANALOG_H__
 
 #include <AP_HAL/AP_HAL.h>
-#include "AP_Energy_Backend.h"
+#include "AP_AEergy_Backend.h"
 
-class AP_Energy_Analog : public AP_Energy_Backend //do i need the backend code? what does this do?
+class AP_Energy_Analog : public AP_Energy_Backend
 {
 public:
-    AP_Energy_Analog(const AP_Int8& pin) :
+    AP_Energy_Analog(const AP_Int8 &pin) : 
         _source(NULL),
         _pin(pin),
         _last_pin(-1)
@@ -18,15 +18,16 @@ public:
     // probe and initialise the sensor
     bool init(void);
 
-    // return the current energy change
-    bool get_differential_pressure(float& pressure);
+    // return the current differential_pressure in Pascal
+    bool get_differential_pressure(float &pressure);
+
+    // temperature not available via analog backend
+    bool get_temperature(float &temperature) { return false; }
 
 private:
-    AP_HAL::AnalogSource* _source;
-    const AP_Int8& _pin;
+    AP_HAL::AnalogSource *_source;
+    const AP_Int8 &_pin;
     int8_t _last_pin;
 };
 
-#endif // __AP_ENERGY_ANALOG.H
-
-
+#endif // __AP_ENERGY_ANALOG_H__

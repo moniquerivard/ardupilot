@@ -16,7 +16,7 @@
  */
 
 /*
-  backend driver class for energy
+  backend driver class for airspeed
  */
 
 #ifndef __AP_ENERGY_BACKEND_H__
@@ -32,6 +32,9 @@ public:
 
     // return the current differential_pressure in Pascal
     virtual bool get_differential_pressure(float &pressure) = 0;
+
+    // return the current temperature in degrees C, if available
+    virtual bool get_temperature(float &temperature) = 0;
 };
 
 #endif // __AP_ENERGY_BACKEND_H__

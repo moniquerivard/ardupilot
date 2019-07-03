@@ -407,7 +407,7 @@ void Plane::send_vfr_hud(mavlink_channel_t chan)
     float engy = energy.get_energy();
 
     if (airspeed.enabled()) {
-        aspeed = airspeed.get_raw_pressure(); //change back to get_airspeed
+        aspeed = airspeed.get_airspeed(); 
     } else if (!ahrs.airspeed_estimate(&aspeed)) {
         aspeed = 0;
     }
@@ -423,27 +423,6 @@ void Plane::send_vfr_hud(mavlink_channel_t chan)
         engy
         );
 }
-
-/*
-void Plane::send_energy_sensor(mavlink_channel_t chan) {
-
-    char sensorName = 'engSen';
-    const char *ptr = &sensorName;
-    float energyTest = 0;
-    
-   
-    if (energy.enabled()) {
-        energyTest = energy.get_energy();
-    }
-    
-    mavlink_msg_named_value_float_send(
-        chan,
-        micros(),
-        ptr,
-        energyTest
-    );
-}
-*/
 
 /*
   keep last HIL_STATE message to allow sending SIM_STATE
