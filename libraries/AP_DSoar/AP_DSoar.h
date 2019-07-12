@@ -1,7 +1,6 @@
 #ifndef __AP_DSOAR_H__
 #define __AP_DSOAR_H__
 
-#include <Plane.h>
 #include <AP_AHRS/AP_AHRS.h>
 #include <AP_Param/AP_Param.h>
 
