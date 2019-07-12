@@ -53,6 +53,7 @@
 #include <AP_Camera/AP_Camera.h>          // Photo or video camera
 #include <AP_Airspeed/AP_Airspeed.h>
 #include <AP_Energy/AP_Energy.h>  //energy sensor library
+#include <AP_DSoar/AP_DSoar.h>  //new soaring library
 #include <AP_Terrain/AP_Terrain.h>
 
 #include <APM_OBC/APM_OBC.h>
@@ -374,6 +375,10 @@ private:
 
     //energy sensor
     AP_Energy energy{ aparm };
+
+    Variometer vario;
+
+    AP_DSoar dsoar{aparm};
 
     // ACRO controller state
     struct {
