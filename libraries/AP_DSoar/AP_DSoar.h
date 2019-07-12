@@ -8,20 +8,23 @@ class AP_DSoar {
 
     AP_AHRS& _ahrs;
 
+    //constructor
+public:
     AP_DSoar(const AP_Vehicle::FixedWing& parms) :
         _clMax(0.0f),
         _clMin(0.0f),
         _muMax(0.0f),
         mass(0.0f),
         mu(0.0f),
-        cl(0.0f)
+        cl(0.0f),
+        alpha(0.0f)
     {
         AP_Param::setup_object_defaults(this, var_info);
     };
 
     static const struct AP_Param::GroupInfo var_info[];
     //define constants
-    float neg = 1.0f
+    float neg = 1.0f;
 
     float BMU = 1.51f;
     float BCL = neg * 0.25f;
@@ -47,6 +50,7 @@ private:
     float mass;
     float mu;
     float cl;
+    float alpha;
 };
 
 #endif //__AP_DSOAR_H__
