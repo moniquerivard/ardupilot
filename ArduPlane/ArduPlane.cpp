@@ -691,6 +691,13 @@ void Plane::update_flight_mode(void)
     case INITIALISING:
         // handled elsewhere
         break;
+    case DSOAR:
+        nav_roll_cd = dsoar.get_mu; //set roll angle
+        nav_pitch_cd = dsaor.get_alpha; //set pitch angle
+        //supress throttle 
+        calc_nav_yaw();
+        update_load_factor();
+        break;
     }
 }
 
@@ -754,6 +761,7 @@ void Plane::update_navigation()
     case CIRCLE:
         // nothing to do
         break;
+    case DSOAR:
     }
 }
 

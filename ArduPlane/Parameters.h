@@ -195,6 +195,7 @@ public:
         k_param_mission, // mission library
         k_param_serial_manager, // serial manager library
         k_param_energy, //AP_energy params
+        k_param_dsoar, //dsoar params
         //
         // 150: Navigation parameters
         //

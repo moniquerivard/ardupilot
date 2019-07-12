@@ -1147,6 +1147,10 @@ const AP_Param::Info Plane::var_info[] PROGMEM = {
     // @Path: ../libraries/AP_Energy/AP_Energy.cpp
         GOBJECT(energy, "ENEG_", AP_Energy),
 
+    // @Group: DSOAR_
+    // @Path: ../libraries/AP_DSoar/AP_DSoar.cpp
+        GOBJECT(dsoar, "DSOAR_", AP_DSoar),
+
     // @Group: NAVL1_
     // @Path: ../libraries/AP_L1_Control/AP_L1_Control.cpp
     GOBJECT(L1_controller,         "NAVL1_",   AP_L1_Control),
