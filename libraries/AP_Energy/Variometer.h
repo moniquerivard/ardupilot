@@ -8,8 +8,7 @@ class Variometer {
 public:
     Variometer();
 
-    AP_AHRS &_ahrs;
-    const AP_Vehicle::FixedWing &_aparm;
+    AP_AHRS _ahrs;
 
     float total_E;
     float prev_energy;
