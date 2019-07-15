@@ -4,11 +4,13 @@
 
 
 class Variometer {
-    //constructor 
-public:
-    Variometer();
-
+    
     AP_AHRS _ahrs;
+    
+    
+public:
+    //constructor
+    Variometer();
 
     float total_E;
     float prev_energy;
