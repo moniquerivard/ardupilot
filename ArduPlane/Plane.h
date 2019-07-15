@@ -376,8 +376,6 @@ private:
     //energy sensor
     AP_Energy energy{ aparm };
 
-    Variometer vario;
-
     AP_DSoar dsoar{aparm};
 
     // ACRO controller state

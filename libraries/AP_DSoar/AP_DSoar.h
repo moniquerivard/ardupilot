@@ -6,7 +6,7 @@
 
 class AP_DSoar {
 
-    AP_AHRS& _ahrs;
+    AP_AHRS _ahrs;
 
     //constructor
 public:
