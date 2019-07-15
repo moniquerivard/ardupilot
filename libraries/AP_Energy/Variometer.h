@@ -5,10 +5,11 @@
 
 class Variometer {
     //constructor 
+public:
     Variometer();
 
-    AP_AHRS& _ahrs;
-    const AP_Vehicle::FixedWing& _aparm;
+    AP_AHRS &_ahrs;
+    const AP_Vehicle::FixedWing &_aparm;
 
     float total_E;
     float prev_energy;
@@ -25,6 +26,6 @@ class Variometer {
     }
 
     // Airspeed Sensors
-    AP_Airspeed airspeed{ aparm };
+    AP_Airspeed airspeed;
 
 };
