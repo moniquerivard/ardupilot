@@ -1,7 +1,6 @@
 
 #include <AP_AHRS/AP_AHRS.h>
 #include <AP_Param/AP_Param.h>
-#include <Plane.h>
 
 
 class Variometer {
