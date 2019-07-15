@@ -378,6 +378,8 @@ private:
 
     AP_DSoar dsoar{aparm};
 
+    Variometer vario;
+
     // ACRO controller state
     struct {
         bool locked_roll;

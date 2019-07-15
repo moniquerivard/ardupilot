@@ -10,6 +10,7 @@
 #include <AP_Vehicle/AP_Vehicle.h>
 #include "AP_Energy_Backend.h"
 #include "AP_Energy_Analog.h"
+#include "Variometer.h"
 
 class Energy_Calibration {
 public:
@@ -66,7 +67,7 @@ public:
 
     // return the current airspeed in m/s
     float           get_energy(void) const {
-        return vario.get_engery_change();
+        return _airspeed;
     }
 
     // return the unfiltered airspeed in m/s
