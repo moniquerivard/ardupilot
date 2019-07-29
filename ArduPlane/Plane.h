@@ -378,7 +378,7 @@ private:
 
     AP_DSoar dsoar {aparm, ahrs};
 
-    Variometer vario;
+    Variometer vario {ahrs};
 
     // ACRO controller state
     struct {
