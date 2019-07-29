@@ -427,8 +427,7 @@ void Plane::send_vfr_hud(mavlink_channel_t chan)
         (ahrs.yaw_sensor / 100) % 360,
         throttle_percentage(),
         current_loc.alt / 100.0f,
-        //barometer.get_climb_rate() -- moved so that energy can be seen on mavproxy for testing
-        engy
+        barometer.get_climb_rate()
         );
 }
 
