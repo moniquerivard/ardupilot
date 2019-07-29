@@ -4,13 +4,14 @@
 
 
 class Variometer {
-    
-    const AP_AHRS& _ahrs;
-    
-    
+       
 public:
     //constructor
-    Variometer();
+    Variometer(const AP_AHRS& ahrs):
+        _ahrs(ahrs)
+    {
+        AP_Param::setup_object_defaults(this, var_info);
+    }
 
     float total_E;
     float prev_energy;
