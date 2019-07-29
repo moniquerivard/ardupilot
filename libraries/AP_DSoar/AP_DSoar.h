@@ -6,8 +6,6 @@
 
 class AP_DSoar {
 
-    AP_AHRS _ahrs;
-
     //constructor
 public:
     AP_DSoar(const AP_Vehicle::FixedWing& parms) :
@@ -51,6 +49,8 @@ private:
     float mu;
     float cl;
     float alpha;
+
+    AP_AHRS _ahrs;
 };
 
 #endif //__AP_DSOAR_H__
