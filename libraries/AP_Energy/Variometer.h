@@ -5,7 +5,7 @@
 
 class Variometer {
     
-    AP_AHRS _ahrs;
+    const AP_AHRS& _ahrs;
     
     
 public:

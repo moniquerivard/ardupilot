@@ -50,7 +50,7 @@ private:
     float cl;
     float alpha;
 
-    AP_AHRS _ahrs;
+    const AP_AHRS& _ahrs;
 };
 
 #endif //__AP_DSOAR_H__
