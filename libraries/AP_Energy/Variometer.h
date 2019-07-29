@@ -9,8 +9,8 @@ class Variometer {
        
 public:
     //constructor
-    Variometer(const AP_AHRS& ahrs) :
-        _ahrs(ahrs)
+    Variometer(const AP_AHRS& ahrs):
+        _ahrs(ahrs);
 
     float total_E;
     float prev_energy;
