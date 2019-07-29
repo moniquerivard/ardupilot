@@ -187,7 +187,7 @@ private:
     float get_pressure(void);
 
     AP_Energy_Analog analog;
-    Variometer vario;
+    // Variometer vario;
 };
 
 #endif // __AP_ENERGY_H__
