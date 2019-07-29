@@ -12,7 +12,7 @@ public:
     Variometer(const AP_AHRS& ahrs) :
         _ahrs(ahrs)
     {
-
+        AP_Param::setup_object_defaults(this, var_info);
     };
 
     float total_E;
@@ -32,6 +32,7 @@ public:
     // Airspeed Sensors
     AP_Airspeed airspeed;
 
+    static const struct AP_Param::GroupInfo var_info[];
 private:
     const AP_AHRS& _ahrs;
 
