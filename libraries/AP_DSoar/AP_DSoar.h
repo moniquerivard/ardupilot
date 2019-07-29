@@ -8,7 +8,7 @@ class AP_DSoar {
 
     //constructor
 public:
-    AP_DSoar(const AP_Vehicle::FixedWing& parms) :
+    AP_DSoar(const AP_Vehicle::FixedWing& parms, const AP_AHRS& ahrs) :
         _clMax(0.0f),
         _clMin(0.0f),
         _muMax(0.0f),
