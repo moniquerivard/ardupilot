@@ -376,7 +376,7 @@ private:
     //energy sensor
     AP_Energy energy{ aparm };
 
-    AP_DSoar dsoar aparm, ahrs};
+    AP_DSoar dsoar {aparm, ahrs};
 
     Variometer vario;
 
