@@ -52,8 +52,8 @@
 #include <AP_Relay/AP_Relay.h>       // APM relay
 #include <AP_Camera/AP_Camera.h>          // Photo or video camera
 #include <AP_Airspeed/AP_Airspeed.h>
-#include <AP_Energy/AP_Energy.h>  //energy sensor library
 #include <AP_DSoar/AP_DSoar.h>  //new soaring library
+#include <AP_Energy/AP_Energy.h>  //energy sensor library
 #include <AP_Terrain/AP_Terrain.h>
 
 #include <APM_OBC/APM_OBC.h>
