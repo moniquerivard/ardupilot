@@ -692,11 +692,9 @@ void Plane::update_flight_mode(void)
         // handled elsewhere
         break;
     case DSOAR:
-        float mu = dsoar.get_mu();
-        int32_t mu2 = static_cast<int32_t>(mu);
 
-        nav_roll_cd = mu2; //set roll angle
-        nav_pitch_cd = dsoar.get_alpha; //set pitch angle
+        nav_roll_cd = static_cast<int32_t>(dsoar.get_mu()); //set roll angle
+        nav_pitch_cd = static_cast<int32_t>(dsoar.get_alpha()); //set pitch angle
 
         //supress throttle
         channel_throttle->servo_out = 0;
