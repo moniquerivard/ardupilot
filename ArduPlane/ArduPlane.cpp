@@ -766,6 +766,7 @@ void Plane::update_navigation()
         // nothing to do
         break;
     case DSOAR:
+        break;
     }
 }
 
