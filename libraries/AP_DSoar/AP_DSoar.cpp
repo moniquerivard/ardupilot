@@ -49,17 +49,17 @@ void AP_DSoar::math_stuff(float origin, const AP_AHRS &ahrs) {
     }
     else
     {
-        _ahrs.airspeed_estimate(&v);
+        ahrs.airspeed_estimate(&v);
     }
     v = v * MS_TO_FTS; 
 
     //pitch in degrees
-    float gamma = _ahrs.pitch;
+    float gamma = ahrs.pitch;
     gamma = gamma * RAD_TO_DEG;
 
     //heading in degrees
-    float psi = _ahrs.yaw; 
-    psi = psi * RAD_TO_DEG; 
+    float psi = ahrs.yaw;
+    psi = psi * RAD_TO_DEG;
 
     //equations determined by NEAT algorithm 
     a0 = sigmoid(((beta * beta) / GRAVITY_MSS) * WXAO * x + BAO);
