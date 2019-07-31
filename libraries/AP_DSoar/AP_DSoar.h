@@ -25,19 +25,19 @@ public:
     static const struct AP_Param::GroupInfo var_info[];
     
     //define constants
-    float neg = 1.0f;
+    int32_t neg = 1.0;
 
-    float BMU = 1.51f;
-    float BCL = neg * 0.25f;
-    float WXAO = neg * 1.69f;
-    float WAOMU = 0.90f;
-    float WVMU = neg * 3.86;
-    float WPSICL = neg * 3.04;
-    float WGAMMACL = neg * 7.24;
-    float BAO = neg * 4.91f;
+    int32_t BMU = 1.51;
+    int32_t BCL = neg * 0.25;
+    int32_t WXAO = neg * 1.69;
+    int32_t WAOMU = 0.90;
+    int32_t WVMU = neg * 3.86;
+    int32_t WPSICL = neg * 3.04;
+    int32_t WGAMMACL = neg * 7.24;
+    int32_t BAO = neg * 4.91;
 
     int32_t get_mu(void) {
-        return static_cast<int32_t> (mu);
+        return mu;
     }
 
     int32_t get_alpha(void) {
@@ -45,13 +45,13 @@ public:
     }
 
 private:
-    float _clMax;
-    float _clMin;
-    float _muMax;
-    float mass;
-    float mu;
-    float cl;
-    float alpha;
+    int32_t _clMax;
+    int32_t _clMin;
+    int32_t _muMax;
+    int32_t mass;
+    int32_t mu;
+    int32_t cl;
+    int32_t alpha;
 
     const AP_AHRS& _ahrs;
 };

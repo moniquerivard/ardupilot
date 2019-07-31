@@ -37,17 +37,17 @@ void AP_DSoar::init(float &lat, float &lon) {
 }
 
 void AP_DSoar::math_stuff(float origin) {
-    float a0;
-    float mu_dt;
-    float cl_dt;
+    int32_t a0;
+    int32_t mu_dt;
+    int32_t cl_dt;
 
     //state inputs  
 
     //x position? compare to the origin 
-    float x = 1;
+    int32_t x = 1;
 
     //speed - needs to be in ft/s to work for this equation
-    float v;
+    int32_t v;
     if (airspeed.enabled()) {
         v = airspeed.get_airspeed;
     }
@@ -58,11 +58,11 @@ void AP_DSoar::math_stuff(float origin) {
     v = v * MS_TO_FTS; 
 
     //pitch in degrees
-    float gamma = _ahrs.pitch; 
+    int32_t gamma = _ahrs.pitch; 
     gamma = gamma * RAD_TO_DEG;
 
     //heading in degrees
-    float psi = _ahrs.yaw; 
+    int32_t psi = _ahrs.yaw; 
     psi = psi * RAD_TO_DEG; 
 
     //equations determined by NEAT algorithm 
@@ -71,15 +71,15 @@ void AP_DSoar::math_stuff(float origin) {
     cl_dt = sigmoid(WPSICL * psi + WGAMMACL * gamma + BCL);
     
     //determine desired lift and heading angle from above math 
-    float mu = mass* mu_dt * 2 * _muMax-_muMax;
-    float cl = cl_dt * (_clMax - _clMin) + _clMin;
+    int32_t mu = mass* mu_dt * 2 * _muMax-_muMax;
+    int32_t cl = cl_dt * (_clMax - _clMin) + _clMin;
 
-    float alpha = cl /360; //small airfoil, small AOA THIN AIRFOIL THEORY 
+    int32_t alpha = cl /360; //small airfoil, small AOA THIN AIRFOIL THEORY 
 }
 
-float AP_DSoar::sigmoid(float arg) {
-    float numerator = 1.0f;
-    float denom = 1.0 + exp(-1.0 * arg);
+int32_t AP_DSoar::sigmoid(int32_t arg) {
+    int32_t numerator = 1.0f;
+    int32_t denom = 1.0 + exp(-1.0 * arg);
     return numerator / denom;
 }
 
