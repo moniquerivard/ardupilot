@@ -36,11 +36,11 @@ public:
     float WGAMMACL = neg * 7.24;
     float BAO = neg * 4.91f;
 
-    float get_mu(void) {
-        return mu;
+    int32_t get_mu(void) {
+        return static_cast<int32_t> (mu);
     }
 
-    float get_alpha(void) {
+    int32_t get_alpha(void) {
         return alpha;
     }
 
