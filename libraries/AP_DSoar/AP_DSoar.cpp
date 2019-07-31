@@ -32,10 +32,6 @@ const AP_Param::GroupInfo AP_DSoar::var_info[] PROGMEM = {
     AP_GROUPEND
 };
 
-void AP_DSoar::init(float &lat, float &lon) {
-    //using this to set origin for the x state to be compared  back to 
-}
-
 void AP_DSoar::math_stuff(float origin) {
     float a0;
     float mu_dt;

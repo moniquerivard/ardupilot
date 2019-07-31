@@ -36,6 +36,8 @@ public:
     float WGAMMACL = neg * 7.24;
     float BAO = neg * 4.91;
 
+    void  math_stuff(float origin);
+
     float get_mu(void) {
         return mu;
     }
