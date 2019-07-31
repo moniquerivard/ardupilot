@@ -36,6 +36,7 @@ public:
     float BAO = neg * 4.91f;
 
     void  math_stuff(float origin, const AP_AHRS &ahrs);
+    const AP_Vehicle::FixedWing &aparm;
 
     float get_mu(void) {
         return mu;
