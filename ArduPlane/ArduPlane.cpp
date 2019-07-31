@@ -692,7 +692,7 @@ void Plane::update_flight_mode(void)
         // handled elsewhere
         break;
     case DSOAR:
-        float mu = dsoar.get_mu;
+        float mu = dsoar.get_mu();
         int32_t mu2 = static_cast<int32_t>(mu);
 
         nav_roll_cd = mu2; //set roll angle
