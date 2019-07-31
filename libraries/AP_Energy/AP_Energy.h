@@ -10,7 +10,7 @@
 #include <AP_Vehicle/AP_Vehicle.h>
 #include "AP_Energy_Backend.h"
 #include "AP_Energy_Analog.h"
-#include "Variometer.h"
+//#include "Variometer.h"
 
 class Energy_Calibration {
 public:
@@ -187,7 +187,7 @@ private:
     float get_pressure(void);
 
     AP_Energy_Analog analog;
-    Variometer vario;
+    //Variometer vario;
 };
 
 #endif // __AP_ENERGY_H__

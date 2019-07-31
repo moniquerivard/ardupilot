@@ -6,8 +6,9 @@
 
 class AP_DSoar {
 
-    //constructor
+   
 public:
+    //constructor
     AP_DSoar(const AP_Vehicle::FixedWing& parms, const AP_AHRS& ahrs) :
         _clMax(0.0f),
         _clMin(0.0f),
@@ -22,6 +23,7 @@ public:
     };
 
     static const struct AP_Param::GroupInfo var_info[];
+    
     //define constants
     float neg = 1.0f;
 
