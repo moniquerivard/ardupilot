@@ -9,11 +9,13 @@ class Variometer {
        
 public:
     //constructor
-    Variometer(const AP_AHRS& ahrs) :
+    Variometer(const AP_Vehicle::FixedWing& parms, const AP_AHRS& ahrs) :
         _ahrs(ahrs)
     {
         AP_Param::setup_object_defaults(this, var_info);
     };
+
+    static const struct AP_Param::GroupInfo var_info[];
 
     float total_E;
     float prev_energy;
@@ -32,11 +34,9 @@ public:
     // Airspeed Sensors
     AP_Airspeed airspeed;
 
-    static const struct AP_Param::GroupInfo var_info[];
+   
 private:
     const AP_AHRS& _ahrs;
-
-
 };
 
 #endif //__VARIOMETER_H__
