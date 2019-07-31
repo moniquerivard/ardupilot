@@ -45,10 +45,10 @@ public:
     }
 
 private:
-    float _clMax;
-    float _clMin;
-    float _muMax;
-    float mass;
+    AP_Float _clMax;
+    AP_Float _clMin;
+    AP_Float _muMax;
+    AP_Float mass;
     float mu;
     float cl;
     float alpha;
