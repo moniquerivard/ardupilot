@@ -9,7 +9,7 @@ class AP_DSoar {
    
 public:
     //constructor
-    AP_DSoar(const AP_Vehicle::FixedWing &parms, const AP_AHRS &ahrs) :
+    AP_DSoar(const AP_Vehicle::FixedWing &parms,const AP_AHRS &ahrs) :
         _clMax(0.0f),
         _clMin(0.0f),
         _muMax(0.0f),
@@ -36,7 +36,7 @@ public:
     float WGAMMACL = neg * 7.24f;
     float BAO = neg * 4.91f;
 
-    void  math_stuff(float origin);
+    void  math_stuff(float origin, const AP_AHRS &ahrs);
 
     float get_mu(void) {
         return mu;

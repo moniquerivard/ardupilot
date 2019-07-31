@@ -32,7 +32,7 @@ const AP_Param::GroupInfo AP_DSoar::var_info[] PROGMEM = {
     AP_GROUPEND
 };
 
-void AP_DSoar::math_stuff(float origin) {
+void AP_DSoar::math_stuff(float origin, const AP_AHRS &ahrs) {
     float a0;
     float mu_dt;
     float cl_dt;
@@ -54,7 +54,7 @@ void AP_DSoar::math_stuff(float origin) {
     v = v * MS_TO_FTS; 
 
     //pitch in degrees
-    float gamma = _ahrs.pitch; 
+    float gamma = _ahrs.pitch;
     gamma = gamma * RAD_TO_DEG;
 
     //heading in degrees
