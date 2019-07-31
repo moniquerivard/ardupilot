@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\libraries",
-    "\\libraries\\AP_DSoar",
     "\\libraries\\AP_Energy"
   ],
-  "SelectedNode": "\\libraries\\AP_Energy\\AP_Energy.h",
+  "SelectedNode": "\\libraries\\AP_Energy\\AP_Energy.cpp",
   "PreviewInSolutionExplorer": false
 }

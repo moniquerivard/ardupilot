@@ -697,7 +697,9 @@ void Plane::update_flight_mode(void)
 
         nav_roll_cd = mu2; //set roll angle
         nav_pitch_cd = dsoar.get_alpha; //set pitch angle
-        //supress throttle 
+
+        //supress throttle
+        channel_throttle->servo_out = 0;
 
         //calc_nav_yaw();
         update_load_factor();
