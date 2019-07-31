@@ -16,7 +16,7 @@ public:
         mass(0.0f),
         mu(0.0f),
         cl(0.0f),
-        alpha(0.0f),
+        alpha(0.0f)
     {
         AP_Param::setup_object_defaults(this, var_info);
     };
