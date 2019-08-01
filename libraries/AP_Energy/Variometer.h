@@ -4,7 +4,6 @@
 #include <AP_AHRS/AP_AHRS.h>
 #include <AP_Param/AP_Param.h>
 
-
 class Variometer {
 
     AP_AHRS &_ahrs;
@@ -21,6 +20,9 @@ public:
     float energy_change;
     float aspd;
     float alt;
+
+    // The plane's current location
+    struct Location current_loc {};
 
     void calc_energy(void);
 

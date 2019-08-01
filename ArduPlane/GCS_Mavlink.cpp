@@ -404,15 +404,6 @@ void Plane::send_radio_out(mavlink_channel_t chan)
 void Plane::send_vfr_hud(mavlink_channel_t chan)
 {
     float aspeed;
-   // float engy = vario.get_energy_change();
-    
-   /* if (energy.enabled()) {
-        engy = energy.get_energy();
-    }
-    else{
-        engy = 0;
-    }*/
-
 
     if (airspeed.enabled()) {
         aspeed = airspeed.get_airspeed(); 

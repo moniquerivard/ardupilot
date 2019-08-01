@@ -4,6 +4,7 @@
 #include <AP_AHRS/AP_AHRS.h>
 #include <AP_Param/AP_Param.h>
 #include <AP_Airspeed/AP_Airspeed.h>
+#include <AP_SpdHgtControl/AP_SpdHgtControl.h>
 
 class AP_DSoar {
 

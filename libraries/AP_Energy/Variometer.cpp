@@ -19,6 +19,9 @@ Variometer::Variometer(const AP_Vehicle::FixedWing& parms, AP_AHRS& ahrs) :
 void Variometer::calc_energy(void) {
  
     prev_energy = total_E;
+    //returns true if position is available, call fills in lat, long and alt
+
+    _ahrs.get_position(current_loc);
     alt = current_loc.alt / 100.0f;
 
     if (_airspeed.enabled()) {
