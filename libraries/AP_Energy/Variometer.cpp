@@ -9,7 +9,7 @@
 
 */
 
-Variometer(const AP_Vehicle::FixedWing& parms, AP_AHRS& ahrs) :
+Variometer::Variometer(const AP_Vehicle::FixedWing& parms, AP_AHRS& ahrs) :
         _ahrs(ahrs),
         _airspeed(parms)
 {
@@ -21,8 +21,8 @@ void Variometer::calc_energy(void) {
     prev_energy = total_E;
     alt = current_loc.alt / 100.0f;
 
-    if (airspeed.enabled()) {
-        aspd = airspeed.get_airspeed;
+    if (_airspeed.enabled()) {
+        aspd = _airspeed.get_airspeed();
     }
     else
     {
