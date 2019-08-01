@@ -32,8 +32,9 @@ const AP_Param::GroupInfo AP_DSoar::var_info[] PROGMEM = {
     AP_GROUPEND
 };
 
-AP_DSoar::AP_DSoar(const AP_Vehicle::FixedWing &parms, const AP_AHRS &ahrs) :
-    _ahrs(ahrs)
+AP_DSoar::AP_DSoar(const AP_Vehicle::FixedWing &parms, AP_AHRS &ahrs) :
+    _ahrs(ahrs),
+    _airspeed(parms)
 {
  AP_Param::setup_object_defaults(this, var_info);
 }
