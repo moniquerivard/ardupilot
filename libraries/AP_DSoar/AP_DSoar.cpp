@@ -69,7 +69,7 @@ void AP_DSoar::math_stuff(float origin, const AP_AHRS &ahrs) {
 
     //equations determined by NEAT algorithm 
     a0 = sigmoid(((beta * beta) / GRAVITY_MSS) * WXAO * x + BAO);
-    mud_dt = sigmoid(WAOMU * a0 + (beta / GRAVITY_MSS) * WVMU * v + BMU);
+    mu_dt = sigmoid(WAOMU * a0 + (beta / GRAVITY_MSS) * WVMU * v + BMU);
     cl_dt = sigmoid(WPSICL * psi + WGAMMACL * gamma + BCL);
     
     //determine desired lift and heading angle from above math 

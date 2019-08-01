@@ -3,6 +3,7 @@
 
 #include <AP_AHRS/AP_AHRS.h>
 #include <AP_Param/AP_Param.h>
+#include <AP_Airspeed/AP_Airspeed.h>
 
 class AP_DSoar {
 
@@ -40,6 +41,8 @@ public:
 
     void  math_stuff(float origin, const AP_AHRS &ahrs);
 
+    float sigmoid(float arg);
+
     float get_mu(void) {
         return mu;
     }
@@ -56,6 +59,8 @@ private:
     float mu;
     float cl;
     float alpha;
+
+    AP_Airspeed airspeed;
 };
 
 #endif //__AP_DSOAR_H__
