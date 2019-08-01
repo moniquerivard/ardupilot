@@ -8,6 +8,7 @@
 class AP_DSoar {
 
     AP_AHRS &_ahrs;
+    AP_Airspeed _airspeed;
    
 public:
     //constructor
@@ -39,7 +40,7 @@ public:
     float WGAMMACL = neg * 7.24f;
     float BAO = neg * 4.91f;
 
-    void  math_stuff(float origin, const AP_AHRS &ahrs);
+    void  math_stuff(void);
 
     float sigmoid(float arg);
 
@@ -59,8 +60,13 @@ private:
     float mu;
     float cl;
     float alpha;
-
-    AP_Airspeed airspeed;
+    float a0;
+    float mu_dt;
+    float cl_dt;
+    float v;
+    float gamma;
+    float psi;
+    float beta;
 };
 
 #endif //__AP_DSOAR_H__

@@ -38,10 +38,7 @@ AP_DSoar::AP_DSoar(const AP_Vehicle::FixedWing &parms, const AP_AHRS &ahrs) :
  AP_Param::setup_object_defaults(this, var_info);
 }
 
-void AP_DSoar::math_stuff(float origin, const AP_AHRS &ahrs) {
-    float a0;
-    float mu_dt;
-    float cl_dt;
+void AP_DSoar::math_stuff(void) {
 
     //state inputs  
 
@@ -49,9 +46,8 @@ void AP_DSoar::math_stuff(float origin, const AP_AHRS &ahrs) {
     float x = 1;
 
     //speed - needs to be in ft/s to work for this equation
-    float v;
-    if (airspeed.enabled()) {
-        v = airspeed.get_airspeed();
+    if (_airspeed.enabled()) {
+        v = _airspeed.get_airspeed();
     }
     else
     {
@@ -60,14 +56,12 @@ void AP_DSoar::math_stuff(float origin, const AP_AHRS &ahrs) {
     v = v * MS_TO_FTS; 
 
     //pitch in degrees
-    float gamma = ahrs.pitch;
-    gamma = gamma * RAD_TO_DEG;
+    gamma = (ahrs.pitch)* RAD_TO_DEG;
 
     //heading in degrees
-    float psi = ahrs.yaw;
-    psi = psi * RAD_TO_DEG;
+    psi = (ahrs.yaw)*RAD_TO_DEG;
 
-    float beta = float(ahrs.get_beta());
+    beta = float(ahrs.get_beta());
 
     //equations determined by NEAT algorithm 
     a0 = sigmoid(((beta * beta) / GRAVITY_MSS) * WXAO * x + BAO);
@@ -75,10 +69,10 @@ void AP_DSoar::math_stuff(float origin, const AP_AHRS &ahrs) {
     cl_dt = sigmoid(WPSICL * psi + WGAMMACL * gamma + BCL);
     
     //determine desired lift and heading angle from above math 
-    float mu = mass* mu_dt * 2 * _muMax-_muMax;
-    float cl = cl_dt * (_clMax - _clMin) + _clMin;
+    mu = mass* mu_dt * 2 * _muMax-_muMax;
+    cl = cl_dt * (_clMax - _clMin) + _clMin;
 
-    float alpha = cl /360; //small airfoil, small AOA THIN AIRFOIL THEORY 
+    alpha = cl /360; //small airfoil, small AOA THIN AIRFOIL THEORY
 }
 
 float AP_DSoar::sigmoid(float arg) {
