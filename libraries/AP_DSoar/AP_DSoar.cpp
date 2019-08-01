@@ -51,7 +51,7 @@ void AP_DSoar::math_stuff(float origin, const AP_AHRS &ahrs) {
     //speed - needs to be in ft/s to work for this equation
     float v;
     if (airspeed.enabled()) {
-        v = airspeed.get_airspeed;
+        v = airspeed.get_airspeed();
     }
     else
     {
@@ -67,9 +67,11 @@ void AP_DSoar::math_stuff(float origin, const AP_AHRS &ahrs) {
     float psi = ahrs.yaw;
     psi = psi * RAD_TO_DEG;
 
+    float beta = float(ahrs.get_beta());
+
     //equations determined by NEAT algorithm 
-    a0 = sigmoid(((ahrs.beta * ahrs.beta) / GRAVITY_MSS) * WXAO * x + BAO);
-    mu_dt = sigmoid(WAOMU * a0 + (ahrs.beta / GRAVITY_MSS) * WVMU * v + BMU);
+    a0 = sigmoid(((beta * beta) / GRAVITY_MSS) * WXAO * x + BAO);
+    mu_dt = sigmoid(WAOMU * a0 + (beta / GRAVITY_MSS) * WVMU * v + BMU);
     cl_dt = sigmoid(WPSICL * psi + WGAMMACL * gamma + BCL);
     
     //determine desired lift and heading angle from above math 

@@ -362,6 +362,10 @@ public:
     // time that the AHRS has been up
     virtual uint32_t uptime_ms(void) const = 0;
 
+    AP_Float get_beta(void) {
+        return beta;
+    }
+
 protected:
     AHRS_VehicleClass _vehicle_class;
 
