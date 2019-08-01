@@ -1,7 +1,6 @@
 #include "AP_DSoar.h"
 
 #define MS_TO_FTS 3.28084
-#define RAD_TO_DEG 180/PI
 
 const AP_Param::GroupInfo AP_DSoar::var_info[] PROGMEM = {
 
@@ -52,17 +51,17 @@ void AP_DSoar::math_stuff(void) {
     }
     else
     {
-        ahrs.airspeed_estimate(&v);
+        _ahrs.airspeed_estimate(&v);
     }
     v = v * MS_TO_FTS; 
 
     //pitch in degrees
-    gamma = (ahrs.pitch)* RAD_TO_DEG;
+    gamma = (_ahrs.pitch)* RAD_TO_DEG;
 
     //heading in degrees
-    psi = (ahrs.yaw)*RAD_TO_DEG;
+    psi = (_ahrs.yaw)*RAD_TO_DEG;
 
-    beta = float(ahrs.get_beta());
+    beta = float(_ahrs.get_beta());
 
     //equations determined by NEAT algorithm 
     a0 = sigmoid(((beta * beta) / GRAVITY_MSS) * WXAO * x + BAO);
