@@ -6,20 +6,23 @@
 
 class AP_DSoar {
 
+    AP_AHRS &_ahrs;
    
 public:
     //constructor
-    AP_DSoar(const AP_Vehicle::FixedWing &parms) :
-        _clMax(0.0f),
+    AP_DSoar(const AP_Vehicle::FixedWing &parms, const AP_AHRS &ahrs);
+
+      /*  _clMax(0.0f),
         _clMin(0.0f),
         _muMax(0.0f),
         mass(0.0f),
         mu(0.0f),
         cl(0.0f),
-        alpha(0.0f)
+        alpha(0.0f),
+        _ahrs(ahrs)
     {
         AP_Param::setup_object_defaults(this, var_info);
-    };
+    };*/
 
     static const struct AP_Param::GroupInfo var_info[];
     
@@ -36,7 +39,6 @@ public:
     float BAO = neg * 4.91f;
 
     void  math_stuff(float origin, const AP_AHRS &ahrs);
-    const AP_Vehicle::FixedWing &aparm;
 
     float get_mu(void) {
         return mu;
