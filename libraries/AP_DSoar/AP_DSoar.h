@@ -58,7 +58,7 @@ private:
     AP_Float _clMin;
     AP_Float _muMax;
     AP_Float mass;
-    AP_FLoat vMax;
+    AP_Float vMax;
     float mu;
     float cl;
     float alpha;
