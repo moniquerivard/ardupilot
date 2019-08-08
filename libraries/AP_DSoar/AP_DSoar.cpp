@@ -28,7 +28,7 @@ const AP_Param::GroupInfo AP_DSoar::var_info[] PROGMEM = {
     // @Values:
     AP_GROUPINFO("mass",  3, AP_DSoar, mass, 0.58f), //slugs
 
-    AP_GROUPINFO("vMax", 4, AP_DSoar, vMax, 30f) //ft per sec
+    AP_GROUPINFO("vMax", 4, AP_DSoar, vMax, 30f), //ft per sec
     AP_GROUPEND
 };
 
