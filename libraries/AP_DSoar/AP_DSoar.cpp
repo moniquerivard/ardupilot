@@ -1,7 +1,6 @@
 #include "AP_DSoar.h"
 
 #define MS_TO_FTS 3.28084
-#define PI 3.14
 
 const AP_Param::GroupInfo AP_DSoar::var_info[] PROGMEM = {
 

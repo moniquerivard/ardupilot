@@ -198,6 +198,9 @@ void Plane::send_extended_status1(mavlink_channel_t chan)
 
     case INITIALISING:
         break;
+
+    case DSOAR:
+        break;
     }
 
     // set motors outputs as enabled if safety switch is not disarmed (i.e. either NONE or ARMED)
@@ -420,6 +423,16 @@ void Plane::send_vfr_hud(mavlink_channel_t chan)
         current_loc.alt / 100.0f,
         barometer.get_climb_rate()
         );
+}
+
+void Plane::send_energy_sensor(mavlink_channel_t chan) {
+    float engy = vario.get_energy();
+
+    mavlink_msg_named_value_float_send(
+            chan,
+            micros(),
+            engy
+            );
 }
 
 /*
@@ -666,9 +679,10 @@ bool GCS_MAVLINK::try_send_message(enum ap_message id)
         plane.send_vfr_hud(chan);
         break;
     
-    /*case MSG_ENERGY:
+    case MSG_ENERGY:
+        CHECK_PAYLOAD_SIZE(NAMED_VALUE_FLOAT);
         plane.send_energy_sensor(chan);
-        break;*/
+        break;
 
     case MSG_RAW_IMU1:
         CHECK_PAYLOAD_SIZE(RAW_IMU);
