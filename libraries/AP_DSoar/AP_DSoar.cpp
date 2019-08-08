@@ -1,6 +1,7 @@
 #include "AP_DSoar.h"
 
 #define MS_TO_FTS 3.28084
+#define PI 3.14
 
 const AP_Param::GroupInfo AP_DSoar::var_info[] PROGMEM = {
 
@@ -28,7 +29,7 @@ const AP_Param::GroupInfo AP_DSoar::var_info[] PROGMEM = {
     // @Values:
     AP_GROUPINFO("mass",  3, AP_DSoar, mass, 0.58f), //slugs
 
-    AP_GROUPINFO("vMax", 4, AP_DSoar, vMax, 30f), //ft per sec
+    AP_GROUPINFO("vMax", 4, AP_DSoar, vMax, 30), //ft per sec
     AP_GROUPEND
 };
 
@@ -65,7 +66,7 @@ void AP_DSoar::math_stuff(void) {
     n1 = sigmoid(w_v_n1*(v/vMax)+b1);
     n2 = sigmoid(w_n1_n2*n1+b2);
     mu_dt = sigmoid(w_v_mu*(v/vMax) + w_n2_mu*n2 + bmu);
-    cl_dt =sigmoid(w_gamma_cl*(gamma/(pi*0.5))+bcl);
+    cl_dt =sigmoid(w_gamma_cl*(gamma/(PI*0.5))+bcl);
 
     //determine desired lift and heading angle from above math 
     mu = mass* mu_dt * 2 * _muMax-_muMax;
