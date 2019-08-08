@@ -425,12 +425,13 @@ void Plane::send_vfr_hud(mavlink_channel_t chan)
         );
 }
 
-void Plane::send_energy_sensor(mavlink_channel_t chan) {
+void Plane::send_energy_sensor() {
     float engy = vario.get_energy();
+    const char name = "energy";
 
     mavlink_msg_named_value_float_send(
-            chan,
             micros(),
+            *name,
             engy
             );
 }
@@ -681,7 +682,7 @@ bool GCS_MAVLINK::try_send_message(enum ap_message id)
     
     case MSG_ENERGY:
         CHECK_PAYLOAD_SIZE(NAMED_VALUE_FLOAT);
-        plane.send_energy_sensor(chan);
+        plane.send_energy_sensor();
         break;
 
     case MSG_RAW_IMU1:
