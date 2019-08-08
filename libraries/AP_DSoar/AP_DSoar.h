@@ -20,6 +20,7 @@ public:
     //define constants
     float neg = 1.0f;
 
+    /*
     float BMU = 1.51f;
     float BCL = neg * 0.25f;
     float WXAO = neg * 1.69f;
@@ -28,6 +29,17 @@ public:
     float WPSICL = neg * 3.04f;
     float WGAMMACL = neg * 7.24f;
     float BAO = neg * 4.91f;
+     */
+
+    float b1 = 1.05326689227f;
+    float w_v_n1 = 1.0f;
+    float b2 = neg * 1.43078889606f;
+    float w_n1_n2 = 1.31341279392f;
+    float bmu = 0.67455379686f;
+    float w_v_mu = neg* 0.914065507212f;
+    float w_n2_mu = neg * 0.258135759556f;
+    float bcl = 0.00953498555207;
+    float w_gamma_cl = neg * 0.0705295732367f;
 
     void  math_stuff(void);
 
@@ -46,16 +58,16 @@ private:
     AP_Float _clMin;
     AP_Float _muMax;
     AP_Float mass;
+    AP_FLoat vMax;
     float mu;
     float cl;
     float alpha;
-    float a0;
+    float n1;
+    float n2;
     float mu_dt;
     float cl_dt;
     float v;
     float gamma;
-    float psi;
-    float beta;
 };
 
 #endif //__AP_DSOAR_H__

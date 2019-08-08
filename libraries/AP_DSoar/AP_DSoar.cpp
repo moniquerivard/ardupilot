@@ -28,6 +28,7 @@ const AP_Param::GroupInfo AP_DSoar::var_info[] PROGMEM = {
     // @Values:
     AP_GROUPINFO("mass",  3, AP_DSoar, mass, 0.58f), //slugs
 
+    AP_GROUPINFO("vMax", 4, AP_DSoar, vMax, 30f) //ft per sec
     AP_GROUPEND
 };
 
@@ -39,11 +40,6 @@ AP_DSoar::AP_DSoar(const AP_Vehicle::FixedWing &parms, AP_AHRS &ahrs) :
 }
 
 void AP_DSoar::math_stuff(void) {
-
-    //state inputs  
-
-    //x position? compare to the origin 
-    float x = 1;
 
     //speed - needs to be in ft/s to work for this equation
     if (_airspeed.enabled()) {
@@ -58,16 +54,19 @@ void AP_DSoar::math_stuff(void) {
     //pitch in degrees
     gamma = (_ahrs.pitch)* RAD_TO_DEG;
 
-    //heading in degrees
-    psi = (_ahrs.yaw)*RAD_TO_DEG;
-
-    beta = float(_ahrs.get_beta());
-
+    /*
     //equations determined by NEAT algorithm 
     a0 = sigmoid(((beta * beta) / GRAVITY_MSS) * WXAO * x + BAO);
     mu_dt = sigmoid(WAOMU * a0 + (beta / GRAVITY_MSS) * WVMU * v + BMU);
     cl_dt = sigmoid(WPSICL * psi + WGAMMACL * gamma + BCL);
-    
+     */
+
+    //equations determined by NEAT
+    n1 = sigmoid(w_v_n1*(v/vMax)+b1);
+    n2 = sigmoid(w_n1_n2*n1+b2);
+    mu_dt = sigmoid(w_v_mu*(v/vMax) + w_n2_mu*n2 + bmu);
+    cl_dt =sigmoid(w_gamma_cl*(gamma/(pi*0.5))+bcl);
+
     //determine desired lift and heading angle from above math 
     mu = mass* mu_dt * 2 * _muMax-_muMax;
     cl = cl_dt * (_clMax - _clMin) + _clMin;

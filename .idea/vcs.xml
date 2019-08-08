@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/modules/PX4Firmware" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/modules/PX4NuttX" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/modules/uavcan" vcs="Git" />
   </component>
 </project>
