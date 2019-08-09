@@ -372,12 +372,9 @@ private:
 
     // Airspeed Sensors
     AP_Airspeed airspeed {aparm};
-
     //energy sensor
-    AP_Energy energy{ aparm };
-
+    AP_Energy energy{aparm};
     AP_DSoar dsoar {aparm, ahrs};
-
     Variometer vario {aparm, ahrs};
 
     // ACRO controller state

@@ -429,6 +429,7 @@ void Plane::send_energy_sensor() {
     float engy = vario.get_energy();
     char name = 'energy';
     const char *ptr = &name;
+
     mavlink_msg_named_value_float_send(
             micros(),
             ptr,
