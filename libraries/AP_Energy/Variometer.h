@@ -11,7 +11,7 @@ class Variometer {
 
 public:
     //constructor
-    Variometer(const AP_Vehicle::FixedWing& parms, AP_AHRS& ahrs);
+    Variometer(const AP_Vehicle::FixedWing &parms, AP_AHRS &ahrs);
 
     static const struct AP_Param::GroupInfo var_info[];
 

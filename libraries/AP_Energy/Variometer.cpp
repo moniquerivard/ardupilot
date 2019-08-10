@@ -9,7 +9,7 @@
 
 */
 
-Variometer::Variometer(const AP_Vehicle::FixedWing& parms, AP_AHRS& ahrs) :
+Variometer::Variometer(const AP_Vehicle::FixedWing &parms, AP_AHRS &ahrs) :
         _ahrs(ahrs),
         _airspeed(parms)
 {
