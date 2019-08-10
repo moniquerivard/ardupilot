@@ -684,7 +684,7 @@ bool GCS_MAVLINK::try_send_message(enum ap_message id)
     
     case MSG_ENERGY:
         CHECK_PAYLOAD_SIZE(NAMED_VALUE_FLOAT);
-        plane.send_energy_sensor();
+        plane.send_energy_sensor(chan);
         break;
 
     case MSG_RAW_IMU1:
