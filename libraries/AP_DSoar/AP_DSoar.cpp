@@ -80,5 +80,26 @@ float AP_DSoar::sigmoid(float arg) {
     return numerator / denom;
 }
 
+void AP_DSoar::calc_energy(void) {
+
+    prev_energy = total_E;
+    //returns true if position is available, call fills in lat, long and alt
+
+    _ahrs.get_position(current_loc);
+    alt = current_loc.alt / 100.0f;
+
+    if (_airspeed.enabled()) {
+        aspd = _airspeed.get_airspeed();
+    }
+    else
+    {
+        _ahrs.airspeed_estimate(&aspd);
+    }
+
+    total_E = alt + (0.5f * aspd * aspd / GRAVITY_MSS);
+    energy_change = total_E - prev_energy;
+    prev_energy = total_E;
+}
+
 
 

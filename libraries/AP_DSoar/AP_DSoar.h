@@ -53,6 +53,26 @@ public:
         return alpha;
     }
 
+    //ENERGY CODE FROM VARIOMETER LIBRARY
+    float total_E;
+    float prev_energy;
+    float energy_change;
+    float aspd;
+    float alt;
+
+    struct Location current_loc {};
+
+    void calc_energy(void);
+
+    //accessors
+    float get_energy(void) {
+        return total_E;
+    }
+
+    float get_energy_change(void) {
+        return energy_change;
+    }
+
 private:
     AP_Float _clMax;
     AP_Float _clMin;

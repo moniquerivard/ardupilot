@@ -10,7 +10,7 @@
 #include <AP_Vehicle/AP_Vehicle.h>
 #include "AP_Energy_Backend.h"
 #include "AP_Energy_Analog.h"
-#include "Variometer.h"
+//#include "Variometer.h"
 
 class Energy_Calibration {
 public:

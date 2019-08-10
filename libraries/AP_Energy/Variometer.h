@@ -3,6 +3,7 @@
 
 #include <AP_AHRS/AP_AHRS.h>
 #include <AP_Param/AP_Param.h>
+#include <AP_Airspeed/AP_Airspeed.h>
 
 class Variometer {
 
