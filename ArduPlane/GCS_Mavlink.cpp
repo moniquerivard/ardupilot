@@ -426,7 +426,7 @@ void Plane::send_vfr_hud(mavlink_channel_t chan)
 }
 
 void Plane::send_energy_sensor() {
-    float engy = vario.get_energy();
+    float engy = airspeed.get_energy();
     char name = 'energy';
     const char *ptr = &name;
 

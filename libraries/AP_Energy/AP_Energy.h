@@ -67,7 +67,7 @@ public:
 
     // return the current airspeed in m/s
     float           get_energy(void) const {
-        return _airspeed;
+        return vario.total_E;
     }
 
     // return the unfiltered airspeed in m/s
@@ -187,7 +187,8 @@ private:
     float get_pressure(void);
 
     AP_Energy_Analog analog;
-    //Variometer vario;
+
+    Variometer vario;
 };
 
 #endif // __AP_ENERGY_H__
