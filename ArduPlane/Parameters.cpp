@@ -1010,6 +1010,11 @@ const AP_Param::Info Plane::var_info[] = {
     // @Path: ../libraries/AP_Airspeed/AP_Airspeed.cpp
     GOBJECT(airspeed,                               "ARSPD",   AP_Airspeed),
 
+    // @Group: ARSPD
+    // @Path: ../libraries/AP_Energy/AP_Energy.cpp
+    
+    GOBJECT(energy, "ENGY", AP_Energy),
+
     // @Group: NAVL1_
     // @Path: ../libraries/AP_L1_Control/AP_L1_Control.cpp
     GOBJECT(L1_controller,         "NAVL1_",   AP_L1_Control),

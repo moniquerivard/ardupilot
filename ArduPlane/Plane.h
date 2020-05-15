@@ -48,6 +48,7 @@
 #include <AP_Relay/AP_Relay.h>       // APM relay
 #include <AP_Camera/AP_Camera.h>          // Photo or video camera
 #include <AP_Airspeed/AP_Airspeed.h>
+#include <AP_Energy/AP_Energy.h> 
 #include <AP_Terrain/AP_Terrain.h>
 #include <AP_RPM/AP_RPM.h>
 #include <AP_Stats/AP_Stats.h>     // statistics library
@@ -403,6 +404,7 @@ private:
  
     // Airspeed Sensors
     AP_Airspeed airspeed;
+    AP_Energy energy;
 
     // ACRO controller state
     struct {
